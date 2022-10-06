@@ -31,7 +31,10 @@ const registerUser = async (req, res) => {
     password: hashedPassword,
   })
     .then((result) => {
-      res.json({ response: "Registered", ...result._doc });
+      const token = jwt.sign({ _id: result._id }, process.env.TOKENSECRET);
+      res
+        .header("auth-token", token)
+        .json({ response: "Registered", "auth-token": token, ...result._doc });
     })
     .catch((err) => {
       res.status(400).json({ error: err.message });
