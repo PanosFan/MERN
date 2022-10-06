@@ -1,0 +1,18 @@
+$bgColour: #0b0418;
+$textColour: #ffffff;
+$lightTextColour: #8e889c;
+$primaryColour: #071936;
+$secondaryColour: #1e182a;
+
+body {
+  background-color: $bgColour;
+  color: $textColour;
+
+  nav {
+    background-color: $secondaryColour;
+  }
+
+  .flex {
+    display: flex;
+  }
+}

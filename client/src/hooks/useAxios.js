@@ -7,29 +7,31 @@ const useAxios = ({ method = "GET", url, payload = null }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const controller = new AbortController();
+    setTimeout(() => {
+      const controller = new AbortController();
 
-    axios
-      .request({
-        data: payload,
-        signal: controller.signal,
-        method,
-        url,
-      })
-      .then((response) => {
-        setLoading(false);
-        setResponse(response);
-        console.log(response);
-      })
-      .catch((error) => {
-        if (error.message !== "canceled") {
+      axios
+        .request({
+          data: payload,
+          signal: controller.signal,
+          method,
+          url,
+        })
+        .then((response) => {
           setLoading(false);
-          setError(error.message);
-          console.log(error);
-        }
-      });
+          setResponse(response);
+          console.log(response);
+        })
+        .catch((error) => {
+          if (error.message !== "canceled") {
+            setLoading(false);
+            setError(error.message);
+            console.log(error);
+          }
+        });
 
-    return () => controller.abort();
+      return () => controller.abort();
+    }, 3000);
   }, [url, payload, method]);
   return { response, error, loading };
 };
