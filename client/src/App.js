@@ -11,7 +11,6 @@ const App = () => {
   const [auth, setAuth] = useState(null);
   const [response, setResponse] = useState(null);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
   const [username, setUsername] = useState(null);
   const [password, setPassword] = useState(null);
 
@@ -19,20 +18,18 @@ const App = () => {
     const controller = new AbortController();
     axios
       .request({
-        data: { email: "user6@gmail.com", password: "123" },
+        data: { email: "panos@email.com", password: "12345" },
         signal: controller.signal,
         method: "POST",
         url: "http://localhost:4000/api/users/login",
       })
       .then((response) => {
-        setLoading(false);
         setResponse(response);
         setAuth(response.data["auth-token"]);
         console.log(response);
       })
       .catch((error) => {
         if (error.message !== "canceled") {
-          setLoading(false);
           setError(error.message);
           console.log(error);
         }
