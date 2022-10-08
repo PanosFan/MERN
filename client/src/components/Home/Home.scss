@@ -1,4 +1,7 @@
+@import "../../Colours.scss";
+
 .home {
+  color: $textColour;
   padding-top: 2em;
   .flex {
     justify-content: space-between;

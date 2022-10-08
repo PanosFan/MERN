@@ -40,7 +40,7 @@ const Home = ({ auth }) => {
   }, [auth]);
 
   return (
-    <div className="home">
+    <section className="home">
       {loading ? (
         <div className="flex">
           <div>
@@ -64,7 +64,7 @@ const Home = ({ auth }) => {
           <h1>User info</h1>
         </div>
       )}
-    </div>
+    </section>
   );
 };
 

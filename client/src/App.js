@@ -2,7 +2,10 @@ import { useState, useEffect } from "react";
 import "./App.scss";
 import axios from "axios";
 import Home from "./components/Home/Home";
-import Navbar from "./components/Navbar";
+import PageNavbar from "./components/PageNavbar";
+import Auth from "./components/Auth/Auth";
+import Container from "react-bootstrap/Container";
+import CustomToast from "./components/CustomToast";
 
 const App = () => {
   const [auth, setAuth] = useState(null);
@@ -39,10 +42,12 @@ const App = () => {
 
   return (
     <>
-      <Navbar />
-      <main className="container">
+      <PageNavbar />
+      <Container>
+        <Auth />
         <Home auth={auth} />
-      </main>
+      </Container>
+      <CustomToast title="Page info" content="Content" />
     </>
   );
 };

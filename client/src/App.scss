@@ -1,17 +1,12 @@
-$bgColour: #0b0418;
-$textColour: #ffffff;
-$lightTextColour: #8e889c;
-$primaryColour: #071936;
-$secondaryColour: #1e182a;
+@import "~bootstrap/scss/bootstrap";
+@import "./Colours.scss";
 
 body {
   background-color: $bgColour;
-  color: $textColour;
-
   nav {
-    background-color: $secondaryColour;
+    text-align: center !important;
+    border-bottom: 2px solid $primaryColour;
   }
-
   .flex {
     display: flex;
   }
