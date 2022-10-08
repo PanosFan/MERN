@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import "./App.scss";
 import axios from "axios";
 import Home from "./components/Home/Home";
-import PageNavbar from "./components/PageNavbar";
+import PageNavbar from "./components/Layout/PageNavbar/PageNavbar";
 import Auth from "./components/Auth/Auth";
 import Container from "react-bootstrap/Container";
-import CustomToast from "./components/CustomToast";
+import Footer from "./components/Layout/Footer/Footer";
 
 const App = () => {
   const [auth, setAuth] = useState(null);
@@ -31,7 +31,7 @@ const App = () => {
         console.log(response);
       })
       .catch((error) => {
-        if (error.message != "canceled") {
+        if (error.message !== "canceled") {
           setLoading(false);
           setError(error.message);
           console.log(error);
@@ -47,7 +47,7 @@ const App = () => {
         <Auth />
         <Home auth={auth} />
       </Container>
-      <CustomToast title="Page info" content="Content" />
+      <Footer />
     </>
   );
 };

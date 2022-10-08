@@ -3,10 +3,7 @@
 
 body {
   background-color: $bgColour;
-  nav {
-    text-align: center !important;
-    border-bottom: 2px solid $primaryColour;
-  }
+  font-size: 1.1rem;
   .flex {
     display: flex;
   }

@@ -1,9 +1,11 @@
 import "./Auth.scss";
+import CustomToast from "./CustomToast";
 
 function Auth() {
   return (
     <div className="auth">
-      <h1>Auth page</h1>
+      <p>Auth</p>
+      <CustomToast />
     </div>
   );
 }
