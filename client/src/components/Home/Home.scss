@@ -6,7 +6,9 @@
   .flex {
     justify-content: space-between;
     flex-wrap: wrap;
-    .skelly {
+
+    .skelletons,
+    .posts {
       width: 40em;
     }
   }

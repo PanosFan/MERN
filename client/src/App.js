@@ -1,7 +1,6 @@
 import "./App.scss";
 import { useState } from "react";
 import { Route, Routes, BrowserRouter, Navigate } from "react-router-dom";
-import Container from "react-bootstrap/Container";
 
 // Pages
 import PageNavbar from "./components/Layout/PageNavbar/PageNavbar";
@@ -16,17 +15,19 @@ const App = () => {
   return (
     <BrowserRouter>
       <PageNavbar auth={auth} />
-      <Container>
+      <Routes>
         {auth ? (
-          <Routes>
+          <>
             <Route path="/" element={<Home auth={auth} />} />
+            <Route path="/login" element={<Navigate to="/" />} />
+            <Route path="/register" element={<Navigate to="/" />} />
             <Route
               path="*"
               element={<p className="text-info">There's nothing here: 404</p>}
             />
-          </Routes>
+          </>
         ) : (
-          <Routes>
+          <>
             <Route
               path="/login"
               element={<Login auth={auth} setAuth={setAuth} />}
@@ -35,10 +36,10 @@ const App = () => {
               path="/register"
               element={<Register auth={auth} setAuth={setAuth} />}
             />
-            <Route path="*" element={<Navigate to={"/login"} />} />
-          </Routes>
+            <Route path="*" element={<Navigate to="/login" />} />
+          </>
         )}
-      </Container>
+      </Routes>
       <Footer />
     </BrowserRouter>
   );

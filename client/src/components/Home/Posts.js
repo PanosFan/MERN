@@ -1,12 +1,12 @@
 const Posts = ({ response }) => (
-  <div>
+  <section className="posts">
     {response.data.map((item) => (
-      <div key={item._id}>
+      <div className="post" key={item._id}>
         <h3>{item.title}</h3>
         <p>{item.content}</p>
       </div>
     ))}
-  </div>
+  </section>
 );
 
 export default Posts;

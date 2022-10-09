@@ -33,7 +33,7 @@ const Home = ({ auth }) => {
   }, [auth]);
 
   return (
-    <section className="home">
+    <main className="home container">
       {response && (
         <div className="flex">
           <Posts response={response} />
@@ -43,7 +43,7 @@ const Home = ({ auth }) => {
 
       {!response && (
         <div className="flex">
-          <div className="skelly">
+          <div className="skelletons">
             {[1, 2, 3, 4, 5].map((n) => (
               <SkeletonPost theme="dark" key={n} />
             ))}
@@ -51,7 +51,7 @@ const Home = ({ auth }) => {
           <h1>User info</h1>
         </div>
       )}
-    </section>
+    </main>
   );
 };
 

@@ -4,6 +4,9 @@ nav {
   text-align: center !important;
   border-bottom: 2px solid $primaryColour;
   .nav-link {
-    color: $textColour;
+    color: $lightTextColour;
+    .active {
+      color: $textColour;
+    }
   }
 }

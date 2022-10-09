@@ -3,10 +3,10 @@ import "./Register.scss";
 
 const Register = ({ auth, setAuth }) => {
   return (
-    <div className="register">
-      Register page
+    <section className="register container">
+      <p>Register page</p>
       <CustomToast />
-    </div>
+    </section>
   );
 };
 

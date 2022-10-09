@@ -33,10 +33,10 @@ function Login({ auth, setAuth }) {
   // }, []);
 
   return (
-    <div className="login">
+    <section className="login container">
       <p>Login page</p>
       <CustomToast />
-    </div>
+    </section>
   );
 }
 
