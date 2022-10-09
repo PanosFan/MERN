@@ -1,6 +1,6 @@
 import "./App.scss";
 import { useState } from "react";
-import { Route, Routes, BrowserRouter } from "react-router-dom";
+import { Route, Routes, BrowserRouter, Navigate } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 
 // Pages
@@ -22,7 +22,7 @@ const App = () => {
             <Route path="/" element={<Home auth={auth} />} />
             <Route
               path="*"
-              element={<p className="text-info">There's nothing here: 404!</p>}
+              element={<p className="text-info">There's nothing here: 404</p>}
             />
           </Routes>
         ) : (
@@ -35,10 +35,7 @@ const App = () => {
               path="/register"
               element={<Register auth={auth} setAuth={setAuth} />}
             />
-            <Route
-              path="*"
-              element={<p className="text-info">There's nothing here: 404!</p>}
-            />
+            <Route path="*" element={<Navigate to={"/login"} />} />
           </Routes>
         )}
       </Container>
