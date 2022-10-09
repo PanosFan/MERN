@@ -1,8 +1,9 @@
-import "./Home.scss";
-import axios from "axios";
-import { useEffect, useState } from "react";
-import Posts from "./Posts";
 import SkeletonPost from "../Skeletons/SkeletonPost";
+import { useEffect, useState } from "react";
+import { Container } from "react-bootstrap";
+import Posts from "./Posts";
+import axios from "axios";
+import "./Home.scss";
 
 const Home = ({ auth }) => {
   const [response, setResponse] = useState(null);
@@ -33,24 +34,26 @@ const Home = ({ auth }) => {
   }, [auth]);
 
   return (
-    <main className="home container">
-      {response && (
-        <div className="flex">
-          <Posts response={response} />
-          <h1>User info</h1>
-        </div>
-      )}
-
-      {!response && (
-        <div className="flex">
-          <div className="skelletons">
-            {[1, 2, 3, 4, 5].map((n) => (
-              <SkeletonPost theme="dark" key={n} />
-            ))}
+    <main className="home">
+      <Container>
+        {response && (
+          <div className="flex">
+            <Posts response={response} />
+            <h1>User info</h1>
           </div>
-          <h1>User info</h1>
-        </div>
-      )}
+        )}
+
+        {!response && (
+          <div className="flex">
+            <div className="skelletons">
+              {[1, 2, 3, 4, 5].map((n) => (
+                <SkeletonPost theme="dark" key={n} />
+              ))}
+            </div>
+            <h1>User info</h1>
+          </div>
+        )}
+      </Container>
     </main>
   );
 };
