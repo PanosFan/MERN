@@ -1,3 +1,4 @@
+import "./CustomToast.scss";
 import { useState } from "react";
 import Toast from "react-bootstrap/Toast";
 import ToastContainer from "react-bootstrap/ToastContainer";
@@ -18,9 +19,9 @@ function CustomToast() {
           If you don't want to register, you can use this premade account.
           <br />
           <br />
-          Email: user@email.com
+          Email: <span className="text-primary fw-bold">user@email.com</span>
           <br />
-          Password: 123
+          Password: <span className="text-primary fw-bold">123</span>
         </Toast.Body>
       </Toast>
       <Toast show={showB} onClose={toggleShowB}>
