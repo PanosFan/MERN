@@ -15,19 +15,19 @@ function PageNavbar({ auth }) {
             {auth ? (
               <>
                 <LinkContainer to="/">
-                  <Nav.Link>Home</Nav.Link>
+                  <Nav.Link active={false}>Home</Nav.Link>
                 </LinkContainer>
                 <LinkContainer to="/about">
-                  <Nav.Link>About</Nav.Link>
+                  <Nav.Link active={false}>About</Nav.Link>
                 </LinkContainer>
               </>
             ) : (
               <>
                 <LinkContainer to="/login">
-                  <Nav.Link>Login</Nav.Link>
+                  <Nav.Link active={false}>Login</Nav.Link>
                 </LinkContainer>
-                <LinkContainer to="register">
-                  <Nav.Link>Register</Nav.Link>
+                <LinkContainer to="/register">
+                  <Nav.Link active={false}>Register</Nav.Link>
                 </LinkContainer>
               </>
             )}

@@ -8,6 +8,8 @@ import {
 } from "react-bootstrap";
 import CustomToast from "../CustomToast";
 import validateEmail from "../../../utils/validateEmail";
+import { setCookie } from "../../../utils/cookies";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import "./Login.scss";
@@ -19,17 +21,16 @@ function Login({ auth, setAuth }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const controller = new AbortController();
     axios
       .request({
         data: { email, password },
-        signal: controller.signal,
         method: "POST",
         url: "http://localhost:4000/api/users/login",
       })
       .then((response) => {
-        setAuth(response.data["auth-token"]);
         console.log(response);
+        setCookie("auth", response.data["auth-token"]);
+        setAuth(response.data["auth-token"]);
       })
       .catch((error) => {
         setError(error.response.data.error);
@@ -71,6 +72,9 @@ function Login({ auth, setAuth }) {
               </Button>
             </Form>
             {error && <p className="text-danger mt-4">{error}</p>}
+            <p className="mt-3 text-info">
+              Not registered yet? <Link to="/register"> Sign up! </Link>
+            </p>
           </Col>
         </Row>
       </Container>

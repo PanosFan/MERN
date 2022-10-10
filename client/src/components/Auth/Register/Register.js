@@ -1,6 +1,17 @@
-import { Col, Container, Row } from "react-bootstrap";
+import {
+  Col,
+  Container,
+  FloatingLabel,
+  Row,
+  Form,
+  Button,
+} from "react-bootstrap";
+import validateEmail from "../../../utils/validateEmail";
+import { setCookie } from "../../../utils/cookies";
 import CustomToast from "../CustomToast";
+import { Link } from "react-router-dom";
 import { useState } from "react";
+import axios from "axios";
 import "./Register.scss";
 
 const Register = ({ auth, setAuth }) => {
@@ -9,15 +20,77 @@ const Register = ({ auth, setAuth }) => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .request({
+        data: { email, password, name },
+        method: "POST",
+        url: "http://localhost:4000/api/users/register",
+      })
+      .then((response) => {
+        console.log(response);
+        setCookie("auth", response.data["auth-token"]);
+        setAuth(response.data["auth-token"]);
+      })
+      .catch((error) => {
+        setError(error.response.data.error);
+        console.log(error);
+      });
+  };
+
   return (
     <section className="register">
       <Container>
         <Row className="justify-content-center">
-          <Col lg={4} md={6} sm={8}>
-            <p style={{ backgroundColor: "red" }}>Register page</p>
+          <Col xl={4} lg={6} md={8} sm={10}>
+            <Form>
+              <FloatingLabel
+                controlId="floatingName"
+                label="Name"
+                className="mb-3 mt-3"
+              >
+                <Form.Control
+                  type="text"
+                  placeholder="Name"
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </FloatingLabel>
+              <FloatingLabel
+                controlId="floatingInput"
+                label="Email address"
+                className={validateEmail(email)}
+              >
+                <Form.Control
+                  type="email"
+                  className={validateEmail(email)}
+                  placeholder="name@example.com"
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </FloatingLabel>
+              <FloatingLabel
+                controlId="floatingPassword"
+                label="Password"
+                className="mb-3 mt-3"
+              >
+                <Form.Control
+                  type="password"
+                  placeholder="Password"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </FloatingLabel>
+              <Button variant="primary" type="submit" onClick={handleSubmit}>
+                Submit
+              </Button>
+            </Form>
+            {error && <p className="text-danger mt-4">{error}</p>}
+            <p className="mt-3 text-info">
+              Already got an account? <Link to="/login"> Sign in! </Link>
+            </p>
           </Col>
         </Row>
       </Container>
+
       <CustomToast />
     </section>
   );
