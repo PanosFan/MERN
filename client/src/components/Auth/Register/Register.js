@@ -19,6 +19,7 @@ const Register = ({ auth, setAuth }) => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const [checked, setChecked] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,7 +31,7 @@ const Register = ({ auth, setAuth }) => {
       })
       .then((response) => {
         console.log(response);
-        setCookie("auth", response.data["auth-token"]);
+        if (checked) setCookie("auth", response.data["auth-token"]);
         setAuth(response.data["auth-token"]);
       })
       .catch((error) => {
@@ -56,6 +57,7 @@ const Register = ({ auth, setAuth }) => {
                   onChange={(e) => setName(e.target.value)}
                 />
               </FloatingLabel>
+
               <FloatingLabel
                 controlId="floatingInput"
                 label="Email address"
@@ -68,6 +70,7 @@ const Register = ({ auth, setAuth }) => {
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </FloatingLabel>
+
               <FloatingLabel
                 controlId="floatingPassword"
                 label="Password"
@@ -79,10 +82,20 @@ const Register = ({ auth, setAuth }) => {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </FloatingLabel>
+
+              <Form.Check
+                type="checkbox"
+                id="default-checkbox"
+                label="Remember me"
+                className="mb-5 text-info"
+                onChange={(e) => setChecked(e.currentTarget.checked)}
+              />
+
               <Button variant="primary" type="submit" onClick={handleSubmit}>
                 Submit
               </Button>
             </Form>
+
             {error && <p className="text-danger mt-4">{error}</p>}
             <p className="mt-3 text-info">
               Already got an account? <Link to="/login"> Sign in! </Link>

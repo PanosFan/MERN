@@ -3,12 +3,12 @@ import {
   Container,
   FloatingLabel,
   Row,
-  Form,
   Button,
+  Form,
 } from "react-bootstrap";
-import CustomToast from "../CustomToast";
 import validateEmail from "../../../utils/validateEmail";
 import { setCookie } from "../../../utils/cookies";
+import CustomToast from "../CustomToast";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
@@ -18,6 +18,7 @@ function Login({ auth, setAuth }) {
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [checked, setChecked] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,7 +30,7 @@ function Login({ auth, setAuth }) {
       })
       .then((response) => {
         console.log(response);
-        setCookie("auth", response.data["auth-token"]);
+        if (checked) setCookie("auth", response.data["auth-token"]);
         setAuth(response.data["auth-token"]);
       })
       .catch((error) => {
@@ -56,6 +57,7 @@ function Login({ auth, setAuth }) {
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </FloatingLabel>
+
               <FloatingLabel
                 controlId="floatingPassword"
                 label="Password"
@@ -67,10 +69,20 @@ function Login({ auth, setAuth }) {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </FloatingLabel>
+
+              <Form.Check
+                type="checkbox"
+                id="default-checkbox"
+                label="Remember me"
+                className="mb-5 text-info"
+                onChange={(e) => setChecked(e.currentTarget.checked)}
+              />
+
               <Button variant="primary" type="submit" onClick={handleSubmit}>
                 Submit
               </Button>
             </Form>
+
             {error && <p className="text-danger mt-4">{error}</p>}
             <p className="mt-3 text-info">
               Not registered yet? <Link to="/register"> Sign up! </Link>
@@ -78,7 +90,6 @@ function Login({ auth, setAuth }) {
           </Col>
         </Row>
       </Container>
-
       <CustomToast />
     </section>
   );
