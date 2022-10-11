@@ -1,6 +1,11 @@
 @import "../../../Colours.scss";
 
 footer {
-  color: $textColour;
   margin-top: 10em;
+  background-color: $secondaryColour;
+  padding: 1.5em 0em;
+
+  a {
+    text-decoration: none !important;
+  }
 }

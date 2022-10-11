@@ -9,10 +9,10 @@ const Error = () => {
     <section className="error">
       <Container>
         <Row className="justify-content-center text-center">
-          <Col xl={4} lg={6} md={8} sm={10}>
-            <h1>An error as occured.</h1>
+          <Col xl={5} lg={6} md={8} sm={10}>
+            <h1>An error has occured 404</h1>
             <h1 className="mt-3">
-              <span>(╯°□°）╯︵ ┻━┻</span>
+              <span> ¯\ _(ツ)_/¯</span>
             </h1>
 
             <Button
