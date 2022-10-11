@@ -2,11 +2,12 @@ export function setCookie(name, value, daysTolive) {
   const date = new Date();
   date.setTime(date.getTime() + daysTolive * 24 * 60 * 60 * 1000);
   let expires = "expires=" + date.toLocaleString("en-GB", { timeZone: "GMT" });
-  document.cookie = `${name}=${value}; ${expires}; path=/`;
+  document.cookie = `${name}=${value}; ${expires}; path=/; SameSite=Lax`;
 }
 
 export function deleteCookie(name) {
-  setCookie(name, null, null);
+  document.cookie =
+    name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT; SameSite=Lax";
 }
 
 export function getCookie(name) {

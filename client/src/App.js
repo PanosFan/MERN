@@ -20,7 +20,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <PageNavbar auth={auth} />
+      <PageNavbar auth={auth} setAuth={setAuth} />
       <Routes>
         {auth ? (
           <>

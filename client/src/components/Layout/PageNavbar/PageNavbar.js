@@ -3,8 +3,14 @@ import { LinkContainer } from "react-router-bootstrap";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import "./PageNavbar.scss";
+import { deleteCookie } from "../../../utils/cookies";
 
-function PageNavbar({ auth }) {
+function PageNavbar({ auth, setAuth }) {
+  const logout = () => {
+    deleteCookie("auth");
+    setAuth(null);
+  };
+
   return (
     <Navbar bg="muted" variant="dark" expand="lg" className="mb-3">
       <Container>
@@ -20,6 +26,13 @@ function PageNavbar({ auth }) {
                 <LinkContainer to="/about">
                   <Nav.Link active={false}>About</Nav.Link>
                 </LinkContainer>
+                <Nav.Link
+                  onClick={logout}
+                  className="text-danger"
+                  active={false}
+                >
+                  Logout
+                </Nav.Link>
               </>
             ) : (
               <>

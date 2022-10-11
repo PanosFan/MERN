@@ -20,6 +20,11 @@ const Register = ({ auth, setAuth }) => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [checked, setChecked] = useState(false);
+  const [valid, setValid] = useState(true);
+
+  const handleOnBlur = (callback) => {
+    callback ? setValid(true) : setValid(false);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -31,7 +36,7 @@ const Register = ({ auth, setAuth }) => {
       })
       .then((response) => {
         console.log(response);
-        if (checked) setCookie("auth", response.data["auth-token"]);
+        if (checked) setCookie("auth", response.data["auth-token"], 14);
         setAuth(response.data["auth-token"]);
       })
       .catch((error) => {
@@ -61,11 +66,13 @@ const Register = ({ auth, setAuth }) => {
               <FloatingLabel
                 controlId="floatingInput"
                 label="Email address"
-                className={validateEmail(email)}
+                className={valid ? null : "text-danger"}
+                onBlur={(e) => handleOnBlur(validateEmail(email))}
               >
                 <Form.Control
                   type="email"
-                  className={validateEmail(email)}
+                  className={valid ? null : "text-danger"}
+                  onBlur={(e) => handleOnBlur(validateEmail(email))}
                   placeholder="name@example.com"
                   onChange={(e) => setEmail(e.target.value)}
                 />
