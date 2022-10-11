@@ -64,7 +64,6 @@ function Login({ auth, setAuth }) {
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </FloatingLabel>
-
               <FloatingLabel
                 controlId="floatingPassword"
                 label="Password"
@@ -76,7 +75,6 @@ function Login({ auth, setAuth }) {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </FloatingLabel>
-
               <Form.Check
                 type="checkbox"
                 id="default-checkbox"
@@ -84,12 +82,10 @@ function Login({ auth, setAuth }) {
                 className="mb-5 text-info"
                 onChange={(e) => setChecked(e.currentTarget.checked)}
               />
-
               <Button variant="primary" type="submit" onClick={handleSubmit}>
                 Submit
               </Button>
             </Form>
-
             {error && <p className="text-danger mt-4">{error}</p>}
             <p className="mt-3 text-info">
               Not registered yet? <Link to="/register"> Sign up! </Link>

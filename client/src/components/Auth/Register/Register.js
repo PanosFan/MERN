@@ -62,7 +62,6 @@ const Register = ({ auth, setAuth }) => {
                   onChange={(e) => setName(e.target.value)}
                 />
               </FloatingLabel>
-
               <FloatingLabel
                 controlId="floatingInput"
                 label="Email address"
@@ -89,7 +88,6 @@ const Register = ({ auth, setAuth }) => {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </FloatingLabel>
-
               <Form.Check
                 type="checkbox"
                 id="default-checkbox"
@@ -97,12 +95,10 @@ const Register = ({ auth, setAuth }) => {
                 className="mb-5 text-info"
                 onChange={(e) => setChecked(e.currentTarget.checked)}
               />
-
               <Button variant="primary" type="submit" onClick={handleSubmit}>
                 Submit
               </Button>
             </Form>
-
             {error && <p className="text-danger mt-4">{error}</p>}
             <p className="mt-3 text-info">
               Already got an account? <Link to="/login"> Sign in! </Link>
@@ -110,7 +106,6 @@ const Register = ({ auth, setAuth }) => {
           </Col>
         </Row>
       </Container>
-
       <CustomToast />
     </section>
   );

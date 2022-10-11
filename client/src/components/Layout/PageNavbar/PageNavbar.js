@@ -1,9 +1,9 @@
-import Container from "react-bootstrap/Container";
 import { LinkContainer } from "react-router-bootstrap";
+import { deleteCookie } from "../../../utils/cookies";
+import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import "./PageNavbar.scss";
-import { deleteCookie } from "../../../utils/cookies";
 
 function PageNavbar({ auth, setAuth }) {
   const logout = () => {
