@@ -39,7 +39,7 @@ const Home = ({ auth }) => {
         {response && (
           <div className="flex">
             <Posts response={response} />
-            <h1>User info</h1>
+            <h1 className="mb-5">User info</h1>
           </div>
         )}
 

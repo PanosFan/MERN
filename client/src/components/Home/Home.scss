@@ -5,7 +5,7 @@
   margin-top: 2em;
   .flex {
     justify-content: space-between;
-    flex-wrap: wrap;
+    flex-wrap: wrap-reverse;
 
     .skelletons,
     .posts {
@@ -21,6 +21,15 @@
         background-color: $primaryColour;
         padding: 0.5em 1.5em;
         border-radius: 4px;
+      }
+    }
+  }
+
+  @media screen and (max-width: 576px) {
+    .flex {
+      .skelletons,
+      .posts {
+        width: unset;
       }
     }
   }
