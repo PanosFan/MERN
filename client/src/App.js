@@ -4,11 +4,12 @@ import "./App.scss";
 
 // Pages
 import PageNavbar from "./components/Layout/PageNavbar/PageNavbar";
-import Home from "./components/Home/Home";
-import Login from "./components/Auth/Login/Login";
 import Register from "./components/Auth/Register/Register";
 import Footer from "./components/Layout/Footer/Footer";
+import Error from "./components/Layout/Error/Error";
+import Login from "./components/Auth/Login/Login";
 import { getCookie } from "./utils/cookies";
+import Home from "./components/Home/Home";
 
 const App = () => {
   const [auth, setAuth] = useState(null);
@@ -27,10 +28,7 @@ const App = () => {
             <Route path="/" element={<Home auth={auth} />} />
             <Route path="/login" element={<Navigate to="/" />} />
             <Route path="/register" element={<Navigate to="/" />} />
-            <Route
-              path="*"
-              element={<p className="text-info">There's nothing here: 404</p>}
-            />
+            <Route path="*" element={<Error />} />
           </>
         ) : (
           <>
