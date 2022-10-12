@@ -14,7 +14,9 @@ import { useState } from "react";
 import axios from "axios";
 import "./Login.scss";
 
-function Login({ auth, setAuth }) {
+import capitalizeFirstLetter from "../../../utils/capitalizeFirstLetter";
+
+function Login({ setAuth, setUser }) {
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -36,6 +38,7 @@ function Login({ auth, setAuth }) {
       .then((response) => {
         console.log(response);
         if (checked) setCookie("auth", response.data["auth-token"], 14);
+        setUser(capitalizeFirstLetter(response.data.name));
         setAuth(response.data["auth-token"]);
       })
       .catch((error) => {

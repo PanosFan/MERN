@@ -5,7 +5,7 @@ import Posts from "./Posts";
 import axios from "axios";
 import "./Home.scss";
 
-const Home = ({ auth }) => {
+const Home = ({ auth, user }) => {
   const [response, setResponse] = useState(null);
 
   useEffect(() => {
@@ -39,7 +39,7 @@ const Home = ({ auth }) => {
         {response && (
           <div className="flex">
             <Posts response={response} />
-            <h1 className="mb-5">User info</h1>
+            <h1 className="mb-5">{user}</h1>
           </div>
         )}
 

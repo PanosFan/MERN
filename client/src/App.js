@@ -13,6 +13,7 @@ import Home from "./components/Home/Home";
 
 const App = () => {
   const [auth, setAuth] = useState(null);
+  const [user, setUser] = useState("");
 
   useEffect(() => {
     const token = getCookie("auth");
@@ -25,7 +26,7 @@ const App = () => {
       <Routes>
         {auth ? (
           <>
-            <Route path="/" element={<Home auth={auth} />} />
+            <Route path="/" element={<Home auth={auth} user={user} />} />
             <Route path="/login" element={<Navigate to="/" />} />
             <Route path="/register" element={<Navigate to="/" />} />
             <Route path="*" element={<Error />} />
@@ -34,11 +35,11 @@ const App = () => {
           <>
             <Route
               path="/login"
-              element={<Login auth={auth} setAuth={setAuth} />}
+              element={<Login setAuth={setAuth} setUser={setUser} />}
             />
             <Route
               path="/register"
-              element={<Register auth={auth} setAuth={setAuth} />}
+              element={<Register setAuth={setAuth} setUser={setUser} />}
             />
             <Route path="*" element={<Navigate to="/login" />} />
           </>
