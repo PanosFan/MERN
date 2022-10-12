@@ -19,10 +19,10 @@ function Login({ auth, setAuth }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [checked, setChecked] = useState(false);
-  const [valid, setValid] = useState(true);
+  const [validEmailAddress, setvalidEmailAddress] = useState(true);
 
   const handleOnBlur = (callback) => {
-    callback ? setValid(true) : setValid(false);
+    callback ? setvalidEmailAddress(true) : setvalidEmailAddress(false);
   };
 
   const handleSubmit = (e) => {
@@ -53,12 +53,12 @@ function Login({ auth, setAuth }) {
               <FloatingLabel
                 controlId="floatingInput"
                 label="Email address"
-                className={valid ? null : "text-danger"}
+                className={validEmailAddress ? null : "text-danger"}
                 onBlur={(e) => handleOnBlur(validateEmail(email))}
               >
                 <Form.Control
                   type="email"
-                  className={valid ? null : "text-danger"}
+                  className={validEmailAddress ? null : "text-danger"}
                   onBlur={(e) => handleOnBlur(validateEmail(email))}
                   placeholder="name@example.com"
                   onChange={(e) => setEmail(e.target.value)}
