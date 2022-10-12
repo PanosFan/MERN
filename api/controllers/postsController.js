@@ -29,7 +29,7 @@ const createPost = (req, res) => {
   }
   Post.create({
     ...req.body,
-    userID: req.user,
+    user: req.user,
     likes: 0,
   })
     .then((result) => {
@@ -52,7 +52,10 @@ const deletePost = async (req, res) => {
   if (!exists) return res.status(404).json({ error: "Post not found" });
 
   // checking if the id of the user requesting is the same as the id in db || admin can edit all
-  if (req.user != exists.userID && req.user != "6337278a070b9b637a5f4cea") {
+  if (
+    req.user.id != exists.user.id &&
+    req.user.id != "6337278a070b9b637a5f4cea"
+  ) {
     return res.status(404).json({ error: "This post is not yours" });
   }
 
@@ -77,7 +80,10 @@ const editPost = async (req, res) => {
   if (!exists) return res.status(404).json({ error: "Post not found" });
 
   // checking if the id of the user requesting is the same as the id in db || admin can edit all
-  if (req.user != exists.userID && req.user != "6337278a070b9b637a5f4cea") {
+  if (
+    req.user.id != exists.user.id &&
+    req.user.id != "6337278a070b9b637a5f4cea"
+  ) {
     return res.status(404).json({ error: "This post is not yours" });
   }
 

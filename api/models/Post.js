@@ -14,17 +14,13 @@ const postSchema = new mongoose.Schema(
       required: true,
       type: Number,
     },
-    userID: {
-      required: true,
-      type: String,
-    },
-    comments: {
-      userID: {
-        required: false,
+    user: {
+      id: {
+        required: true,
         type: String,
       },
-      body: {
-        required: false,
+      name: {
+        required: true,
         type: String,
       },
     },

@@ -89,7 +89,7 @@ const editPassword = async (req, res) => {
   if (!exists) return res.status(404).json({ error: "User not found" });
 
   // checking if the id of the user requesting is the same as the id in db || admin can edit all
-  if (req.user != exists._id && req.user != "6337278a070b9b637a5f4cea") {
+  if (req.user.id != exists._id && req.user.id != "6337278a070b9b637a5f4cea") {
     return res.status(404).json({ error: "You can't change that password" });
   }
 
