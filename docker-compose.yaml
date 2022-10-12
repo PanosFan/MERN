@@ -1,15 +1,15 @@
 version: "3.8"
 services:
   api:
-    build: ./api
-    image: panosfan/api
     container_name: api_c
+    build: ./api
+    # image: panosfan/api
     ports:
       - "4000:4000"
   client:
+    container_name: client_c
     build: ./client
     # image: panosfan/client
-    container_name: client_c
     ports:
       - "80:3000"
     stdin_open: true
