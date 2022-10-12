@@ -4,6 +4,7 @@ import { Container } from "react-bootstrap";
 import Posts from "./Posts";
 import axios from "axios";
 import "./Home.scss";
+import SkeletonProfile from "../Skeletons/SkeletonProfile";
 
 const Home = ({ auth, user }) => {
   const [response, setResponse] = useState(null);
@@ -47,10 +48,10 @@ const Home = ({ auth, user }) => {
           <div className="flex">
             <div className="skelletons">
               {[1, 2, 3, 4, 5].map((n) => (
-                <SkeletonPost theme="dark" key={n} />
+                <SkeletonPost key={n} />
               ))}
             </div>
-            <h1>User info</h1>
+            <SkeletonProfile />
           </div>
         )}
       </Container>

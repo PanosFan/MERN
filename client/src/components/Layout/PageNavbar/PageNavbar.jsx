@@ -8,6 +8,7 @@ import "./PageNavbar.scss";
 function PageNavbar({ auth, setAuth }) {
   const logout = () => {
     deleteCookie("auth");
+    deleteCookie("user");
     setAuth(null);
   };
 

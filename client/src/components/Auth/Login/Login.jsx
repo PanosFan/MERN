@@ -37,7 +37,10 @@ function Login({ setAuth, setUser }) {
       })
       .then((response) => {
         console.log(response);
-        if (checked) setCookie("auth", response.data["auth-token"], 14);
+        if (checked) {
+          setCookie("auth", response.data["auth-token"], 14);
+          setCookie("user", capitalizeFirstLetter(response.data.name), 14);
+        }
         setUser(capitalizeFirstLetter(response.data.name));
         setAuth(response.data["auth-token"]);
       })

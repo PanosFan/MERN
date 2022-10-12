@@ -5,11 +5,11 @@
   margin-top: 2em;
   .flex {
     justify-content: space-between;
-    flex-wrap: wrap-reverse;
+    flex-wrap: nowrap;
 
     .skelletons,
     .posts {
-      width: 40em;
+      width: 30em;
     }
 
     .posts {
@@ -25,11 +25,17 @@
     }
   }
 
+  @media screen and (max-width: 992px) {
+    .flex {
+      flex-wrap: wrap-reverse;
+    }
+  }
+
   @media screen and (max-width: 576px) {
     .flex {
       .skelletons,
       .posts {
-        width: unset;
+        width: 100%;
       }
     }
   }

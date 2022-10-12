@@ -16,8 +16,9 @@ const App = () => {
   const [user, setUser] = useState("");
 
   useEffect(() => {
-    const token = getCookie("auth");
-    if (token) setAuth(token);
+    setAuth(getCookie("auth"));
+
+    setUser(getCookie("user"));
   }, []);
 
   return (
