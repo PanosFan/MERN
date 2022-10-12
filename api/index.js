@@ -20,6 +20,7 @@ const adminRoutes = require("./routes/admin");
 require("dotenv/config");
 mongoose
   .connect(process.env.DBURI)
+  // .connect("mongodb://mongo:27017/mern")
   .then(() => console.log("connected to db"))
   .catch((err) => console.log(err));
 
