@@ -1,13 +1,13 @@
+import SkeletonProfile from "../Skeletons/SkeletonProfile";
 import SkeletonPost from "../Skeletons/SkeletonPost";
+import PaginatedPosts from "./PaginatedPosts";
 import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
-import Posts from "./Posts";
 import axios from "axios";
 import "./Home.scss";
-import SkeletonProfile from "../Skeletons/SkeletonProfile";
 
 const Home = ({ auth, user }) => {
-  const [response, setResponse] = useState(null);
+  const [posts, setPosts] = useState(null);
 
   useEffect(() => {
     setTimeout(() => {
@@ -22,7 +22,7 @@ const Home = ({ auth, user }) => {
           },
         })
         .then((response) => {
-          setResponse(response);
+          setPosts(response);
           console.log(response);
         })
         .catch((error) => {
@@ -37,17 +37,17 @@ const Home = ({ auth, user }) => {
   return (
     <main className="home">
       <Container>
-        {response && (
+        {posts && (
           <div className="flex">
-            <Posts response={response} />
+            <PaginatedPosts posts={posts.data} />
             <h1 className="mb-5">{user}</h1>
           </div>
         )}
 
-        {!response && (
+        {!posts && (
           <div className="flex">
             <div className="skelletons">
-              {[1, 2, 3, 4, 5].map((n) => (
+              {[1, 2, 3, 4].map((n) => (
                 <SkeletonPost key={n} />
               ))}
             </div>
