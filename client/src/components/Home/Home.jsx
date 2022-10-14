@@ -32,7 +32,7 @@ const Home = ({ auth, user }) => {
         });
       return () => controller.abort();
     }, 1500);
-  }, [auth]);
+  }, []);
 
   return (
     <main className="home">
