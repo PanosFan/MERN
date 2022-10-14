@@ -6,16 +6,21 @@ import {
   Form,
   Button,
 } from "react-bootstrap";
+import capitalizeFirstLetter from "../../../utils/capitalizeFirstLetter";
 import validateEmail from "../../../utils/validateEmail";
 import { setCookie } from "../../../utils/cookies";
-import CustomToast from "../CustomToast";
+import { setAuth } from "../../../redux/auth";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import "./Register.scss";
-import capitalizeFirstLetter from "../../../utils/capitalizeFirstLetter";
 
-const Register = ({ setAuth, setUser }) => {
+// components
+import CustomToast from "../CustomToast";
+
+const Register = ({ setUser }) => {
+  // local state
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -23,10 +28,15 @@ const Register = ({ setAuth, setUser }) => {
   const [checked, setChecked] = useState(false);
   const [validEmailAddress, setvalidEmailAddress] = useState(true);
 
+  // redux
+  const dispatch = useDispatch();
+
+  // function that checks if the mail field is valid
   const handleOnBlur = (callback) => {
     callback ? setvalidEmailAddress(true) : setvalidEmailAddress(false);
   };
 
+  // register user function on submit
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
@@ -42,7 +52,7 @@ const Register = ({ setAuth, setUser }) => {
           setCookie("user", capitalizeFirstLetter(response.data.name), 14);
         }
         setUser(capitalizeFirstLetter(response.data.name));
-        setAuth(response.data["auth-token"]);
+        dispatch(setAuth(response.data["auth-token"]));
       })
       .catch((error) => {
         setError(error.response.data.error);

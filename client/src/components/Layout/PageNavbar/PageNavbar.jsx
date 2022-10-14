@@ -1,15 +1,22 @@
 import { LinkContainer } from "react-router-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteCookie } from "../../../utils/cookies";
 import Container from "react-bootstrap/Container";
+import { unsetAuth } from "../../../redux/auth";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import "./PageNavbar.scss";
 
-function PageNavbar({ auth, setAuth }) {
+function PageNavbar() {
+  // redux
+  const { auth } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  // logout user and delete cookies
   const logout = () => {
     deleteCookie("auth");
     deleteCookie("user");
-    setAuth(null);
+    dispatch(unsetAuth());
   };
 
   return (

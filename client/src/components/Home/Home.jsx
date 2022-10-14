@@ -1,11 +1,18 @@
+import { Container } from "react-bootstrap";
+import useAxios from "../../hooks/useAxios";
+import { useSelector } from "react-redux";
+import "./Home.scss";
+
+// components
 import SkeletonProfile from "../Skeletons/SkeletonProfile";
 import SkeletonPost from "../Skeletons/SkeletonPost";
 import PaginatedPosts from "./PaginatedPosts";
-import { Container } from "react-bootstrap";
-import useAxios from "../../hooks/useAxios";
-import "./Home.scss";
 
-const Home = ({ auth, user }) => {
+const Home = ({ user }) => {
+  // redux
+  const { auth } = useSelector((state) => state.auth);
+
+  // axios
   const { response, error } = useAxios({
     url: "http://localhost:4000/api/posts/",
     auth,
