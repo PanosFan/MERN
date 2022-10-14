@@ -29,7 +29,7 @@ const Details = ({ auth }) => {
         }
       });
     return () => controller.abort();
-  });
+  }, []);
 
   return (
     <section className="postDetails">
