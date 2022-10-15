@@ -74,10 +74,8 @@ const loginUser = async (req, res) => {
 const editPassword = async (req, res) => {
   const id = req.params.id;
 
-  if (!req.body.password) {
-    return res
-      .status(400)
-      .json({ error: "You need to provide a new password" });
+  if (!(req.body.password && req.body.oldPassword)) {
+    return res.status(400).json({ error: "You need to fill all the fields" });
   }
 
   // checking if the id is a valid one
@@ -91,6 +89,11 @@ const editPassword = async (req, res) => {
   // checking if the id of the user requesting is the same as the id in db || admin can edit all
   if (req.user.id != exists._id && req.user.id != "6337278a070b9b637a5f4cea") {
     return res.status(404).json({ error: "You can't change that password" });
+  }
+
+  const validPass = await bcrypt.compare(req.body.oldPassword, exists.password);
+  if (!validPass) {
+    return res.status(400).json({ error: "Wrong current password" });
   }
 
   // hashing password
