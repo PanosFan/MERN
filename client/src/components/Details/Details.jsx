@@ -13,7 +13,7 @@ const Details = () => {
 
   // fetch post
   const { response } = useAxios({
-    url: `http://localhost:4000/api/posts/${id}`,
+    url: `http://ec2-52-28-61-139.eu-central-1.compute.amazonaws.com:4000/api/posts/${id}`,
     auth,
   });
 
