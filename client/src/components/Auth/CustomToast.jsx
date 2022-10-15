@@ -16,12 +16,13 @@ function CustomToast() {
           <strong className="me-auto">Login info</strong>
         </Toast.Header>
         <Toast.Body>
-          If you don't want to register, you can use this premade account.
-          <br />
-          <br />
+          <p>
+            If you don't want to register, you can use this premade account.
+          </p>
           Email: <span className="text-primary fw-bold">user@email.com</span>
           <br />
           Password: <span className="text-primary fw-bold">123</span>
+          <br />
         </Toast.Body>
       </Toast>
       <Toast show={showB} onClose={toggleShowB}>
@@ -30,7 +31,7 @@ function CustomToast() {
         </Toast.Header>
         <Toast.Body>
           This is a dockerized MERN app, hosted on AWS using react-bootstrap,
-          sass, nginx, express and mongodb hosted on atlas.
+          sass, nginx, bcrypt, JWT and mongodb which is hosted on atlas.
         </Toast.Body>
       </Toast>
     </ToastContainer>

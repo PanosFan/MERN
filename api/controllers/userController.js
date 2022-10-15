@@ -66,18 +66,22 @@ const loginUser = async (req, res) => {
 
   // logged & token
   const token = jwt.sign({ _id: user._id }, process.env.TOKENSECRET);
-  res
-    .header("auth-token", token)
-    .json({
-      response: "Logged in",
-      "auth-token": token,
-      name: user.name,
-      id: user._id,
-    });
+  res.header("auth-token", token).json({
+    response: "Logged in",
+    "auth-token": token,
+    name: user.name,
+    id: user._id,
+  });
 };
 
 const editPassword = async (req, res) => {
   const id = req.params.id;
+
+  if (id == "6341a53085844835f43a3cff") {
+    return res
+      .status(400)
+      .json({ error: "You can't change the password of this user" });
+  }
 
   if (!(req.body.password && req.body.oldPassword)) {
     return res.status(400).json({ error: "You need to fill all the fields" });
