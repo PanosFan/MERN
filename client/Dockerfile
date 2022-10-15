@@ -1,13 +1,25 @@
-FROM node:18-alpine
+# Client
+FROM node:18-alpine as build
 
 WORKDIR /app
 
 COPY package*.json .
 
-RUN npm install
+RUN npm ci --production
 
 COPY . .
 
-EXPOSE 3000
+RUN npm run build
 
-CMD ["npm", "start"]
+# NGINX
+FROM nginx:stable-alpine
+
+COPY --from=build /app/build /usr/share/nginx/html
+
+RUN rm /etc/nginx/conf.d/default.conf
+
+COPY nginx/nginx.conf /etc/nginx/conf.d
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
