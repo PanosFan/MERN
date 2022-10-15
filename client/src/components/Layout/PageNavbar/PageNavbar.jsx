@@ -6,16 +6,18 @@ import { unsetAuth } from "../../../redux/auth";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import "./PageNavbar.scss";
+import { unsetUser } from "../../../redux/user";
 
 function PageNavbar() {
   // redux
-  const { auth } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const { auth } = useSelector((state) => state.auth);
 
   // logout user and delete cookies
   const logout = () => {
     deleteCookie("auth");
     deleteCookie("user");
+    dispatch(unsetUser());
     dispatch(unsetAuth());
   };
 

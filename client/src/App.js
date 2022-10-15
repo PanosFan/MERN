@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getCookie } from "./utils/cookies";
 import { setAuth } from "./redux/auth";
+import { setUser } from "./redux/user";
 import "./App.scss";
 
 // comnponents
@@ -16,16 +17,17 @@ import Home from "./components/Home/Home";
 
 const App = () => {
   // local state (will change it soon)
-  const [user, setUser] = useState("");
+  // const [user, setUser] = useState("");
 
   // redux
-  const { auth } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const { auth } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.user);
 
   // get data from cookies if they are set
   useEffect(() => {
     dispatch(setAuth(getCookie("auth")));
-    setUser(getCookie("user"));
+    dispatch(setUser(getCookie("user")));
   }, []);
 
   return (
@@ -42,8 +44,8 @@ const App = () => {
           </>
         ) : (
           <>
-            <Route path="/login" element={<Login setUser={setUser} />} />
-            <Route path="/register" element={<Register setUser={setUser} />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
             <Route path="*" element={<Navigate to="/login" />} />
           </>
         )}

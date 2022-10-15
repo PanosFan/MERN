@@ -10,6 +10,7 @@ import capitalizeFirstLetter from "../../../utils/capitalizeFirstLetter";
 import validateEmail from "../../../utils/validateEmail";
 import { setCookie } from "../../../utils/cookies";
 import { setAuth } from "../../../redux/auth";
+import { setUser } from "../../../redux/user";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useState } from "react";
@@ -19,7 +20,7 @@ import "./Login.scss";
 // components
 import CustomToast from "../CustomToast";
 
-function Login({ setUser }) {
+function Login() {
   // local state
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");
@@ -50,11 +51,11 @@ function Login({ setUser }) {
           setCookie("auth", response.data["auth-token"], 14);
           setCookie("user", capitalizeFirstLetter(response.data.name), 14);
         }
-        setUser(capitalizeFirstLetter(response.data.name));
+        dispatch(setUser(capitalizeFirstLetter(response.data.name)));
         dispatch(setAuth(response.data["auth-token"]));
       })
       .catch((error) => {
-        setError(error.response.data.error);
+        // setError(error.response.data.error);
         console.log(error);
       });
   };
