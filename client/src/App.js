@@ -1,6 +1,6 @@
 import { Route, Routes, BrowserRouter, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { getCookie } from "./utils/cookies";
 import { setAuth } from "./redux/auth";
 import { setUser } from "./redux/user";
@@ -20,7 +20,6 @@ const App = () => {
   // redux
   const dispatch = useDispatch();
   const { auth } = useSelector((state) => state.auth);
-  const { user } = useSelector((state) => state.user);
 
   // get data from cookies if they are set
   useEffect(() => {

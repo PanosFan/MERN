@@ -10,7 +10,7 @@ import capitalizeFirstLetter from "../../../utils/capitalizeFirstLetter";
 import validateEmail from "../../../utils/validateEmail";
 import { setCookie } from "../../../utils/cookies";
 import { setAuth } from "../../../redux/auth";
-import { setUser } from "../../../redux/user";
+import { setUser, setUserID } from "../../../redux/user";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useState } from "react";
@@ -53,6 +53,7 @@ const Register = () => {
           setCookie("user", capitalizeFirstLetter(response.data.name), 14);
         }
         dispatch(setUser(capitalizeFirstLetter(response.data.name)));
+        dispatch(setUserID(response.data._id));
         dispatch(setAuth(response.data["auth-token"]));
       })
       .catch((error) => {

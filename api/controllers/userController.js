@@ -68,7 +68,12 @@ const loginUser = async (req, res) => {
   const token = jwt.sign({ _id: user._id }, process.env.TOKENSECRET);
   res
     .header("auth-token", token)
-    .json({ response: "Logged in", "auth-token": token, name: user.name });
+    .json({
+      response: "Logged in",
+      "auth-token": token,
+      name: user.name,
+      id: user._id,
+    });
 };
 
 const editPassword = async (req, res) => {
