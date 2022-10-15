@@ -5,12 +5,13 @@ import ReactPaginate from "react-paginate";
 import { Button } from "react-bootstrap";
 
 const PaginatedPosts = ({ posts }) => {
+  const navigate = useNavigate();
+
+  // pagination state
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
   const itemsPerPage = 4;
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
@@ -40,7 +41,7 @@ const PaginatedPosts = ({ posts }) => {
               </small>
               <Button
                 variant="outline-info"
-                onClick={() => navigate(`/${item._id}/details`)}
+                onClick={() => navigate(`/details/${item._id}`)}
               >
                 Read more
               </Button>

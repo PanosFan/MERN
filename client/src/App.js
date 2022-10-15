@@ -14,11 +14,9 @@ import Error from "./components/Layout/Error/Error";
 import Details from "./components/Details/Details";
 import Login from "./components/Auth/Login/Login";
 import Home from "./components/Home/Home";
+import EditPassword from "./components/User/EditPassword";
 
 const App = () => {
-  // local state (will change it soon)
-  // const [user, setUser] = useState("");
-
   // redux
   const dispatch = useDispatch();
   const { auth } = useSelector((state) => state.auth);
@@ -36,8 +34,9 @@ const App = () => {
       <Routes>
         {auth ? (
           <>
-            <Route path="/" element={<Home user={user} />} />
-            <Route path="/:id/details" element={<Details />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/details/:id" element={<Details />} />
+            <Route path="/user/password" element={<EditPassword />} />
             <Route path="/login" element={<Navigate to="/" />} />
             <Route path="/register" element={<Navigate to="/" />} />
             <Route path="*" element={<Error />} />

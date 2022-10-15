@@ -7,13 +7,14 @@ import "./Home.scss";
 import SkeletonProfile from "../Skeletons/SkeletonProfile";
 import SkeletonPost from "../Skeletons/SkeletonPost";
 import PaginatedPosts from "./PaginatedPosts";
+import User from "../User/User";
 
-const Home = ({ user }) => {
+const Home = () => {
   // redux
   const { auth } = useSelector((state) => state.auth);
 
   // axios
-  const { response, error } = useAxios({
+  const { response } = useAxios({
     url: "http://localhost:4000/api/posts/",
     auth,
   });
@@ -24,7 +25,7 @@ const Home = ({ user }) => {
         {response && (
           <div className="flex">
             <PaginatedPosts posts={response.data} />
-            <h1 className="mb-5">{user}</h1>
+            <User />
           </div>
         )}
 

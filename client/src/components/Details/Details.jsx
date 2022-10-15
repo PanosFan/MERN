@@ -12,7 +12,7 @@ const Details = () => {
   const { auth } = useSelector((state) => state.auth);
 
   // fetch post
-  const { response, error } = useAxios({
+  const { response } = useAxios({
     url: `http://localhost:4000/api/posts/${id}`,
     auth,
   });
@@ -20,9 +20,8 @@ const Details = () => {
   return (
     <section className="postDetails">
       <Container>
-        {response && response.data.result.title}
-        <br />
-        {response && response.data.result.content}
+        <p>{response && response.data.result.title}</p>
+        <p>{response && response.data.result.content}</p>
       </Container>
     </section>
   );
