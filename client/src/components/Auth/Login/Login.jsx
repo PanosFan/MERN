@@ -55,7 +55,7 @@ function Login() {
         dispatch(setAuth(response.data["auth-token"]));
       })
       .catch((error) => {
-        // setError(error.response.data.error);
+        setError(error.response.data.error);
         console.log(error);
       });
   };
