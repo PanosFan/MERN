@@ -11,14 +11,13 @@ export const postsSlice = createSlice({
     setPosts: (state, action) => {
       state.posts = action.payload;
     },
+
     deletePostInStore: (state, action) => {
-      let copy = [...state.posts];
-      copy = copy.filter((item) => item._id !== action.payload);
-      state.posts = copy;
+      state.posts = state.posts.filter((item) => item._id !== action.payload);
     },
+
     addPostInStore: (state, action) => {
-      let copy = [...state.posts, action.payload];
-      state.posts = copy;
+      state.posts = [...state.posts, action.payload];
     },
   },
 });
