@@ -1,17 +1,20 @@
-import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
-import { useSelector } from "react-redux";
-import axios from "axios";
+import React, { useState } from "react";
+import Form from "react-bootstrap/Form";
 
-const CustomModal = () => {
+import axios from "axios";
+import { addPostInStore } from "../../redux/posts";
+
+const CreatePostModal = () => {
   const [show, setShow] = useState(false);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
 
+  const dispatch = useDispatch();
   const { auth } = useSelector((state) => state.auth);
 
   const handleSubmit = (e) => {
@@ -26,10 +29,12 @@ const CustomModal = () => {
         },
       })
       .then((response) => {
+        dispatch(addPostInStore(response.data));
         setError("");
         setMessage("Post created");
         setTimeout(() => {
           handleClose();
+          setMessage("");
         }, 1500);
         console.log(response);
       })
@@ -90,4 +95,4 @@ const CustomModal = () => {
   );
 };
 
-export default CustomModal;
+export default CreatePostModal;

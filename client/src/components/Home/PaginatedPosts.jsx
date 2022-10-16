@@ -1,13 +1,18 @@
 import capitalizeFirstLetter from "../../utils/capitalizeFirstLetter";
+import { useDispatch, useSelector } from "react-redux";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import ReactPaginate from "react-paginate";
 import { Button } from "react-bootstrap";
 
-const PaginatedPosts = ({ posts }) => {
+const PaginatedPosts = ({ deletePost }) => {
   const navigate = useNavigate();
 
-  // pagination state
+  const { userID } = useSelector((state) => state.userID);
+  const { posts } = useSelector((state) => state.posts);
+
+  // pagination
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
@@ -21,9 +26,9 @@ const PaginatedPosts = ({ posts }) => {
 
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % posts.length;
-
     setItemOffset(newOffset);
   };
+  // endPagination
 
   return (
     <section className="posts">
@@ -36,12 +41,23 @@ const PaginatedPosts = ({ posts }) => {
               <small className="text-muted">
                 {capitalizeFirstLetter(item.user.name)}
               </small>
-              <Button
-                variant="outline-info"
-                onClick={() => navigate(`/details/${item._id}`)}
-              >
-                Read more
-              </Button>
+              <ButtonGroup>
+                <Button
+                  className="me-2"
+                  variant="outline-info"
+                  onClick={() => navigate(`/details/${item._id}`)}
+                >
+                  Read more
+                </Button>
+                {item.user.id == userID && (
+                  <Button
+                    variant="outline-danger"
+                    onClick={() => deletePost(item._id)}
+                  >
+                    Delete
+                  </Button>
+                )}
+              </ButtonGroup>
             </div>
           </div>
         ))}

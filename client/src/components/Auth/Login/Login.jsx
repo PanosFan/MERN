@@ -19,6 +19,7 @@ import "./Login.scss";
 
 // components
 import CustomToast from "../CustomToast";
+import useAxios from "../../../hooks/useAxios";
 
 function Login() {
   // local state
@@ -48,6 +49,7 @@ function Login() {
       .then((response) => {
         console.log(response);
         if (checked) {
+          setCookie("userID", response.data.id, 14);
           setCookie("auth", response.data["auth-token"], 14);
           setCookie("user", capitalizeFirstLetter(response.data.name), 14);
         }

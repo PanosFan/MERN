@@ -1,18 +1,26 @@
+import { useDispatch, useSelector } from "react-redux";
+import { setPosts, deletePostInStore } from "../../redux/posts";
 import { Container } from "react-bootstrap";
 import useAxios from "../../hooks/useAxios";
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import axios from "axios";
+import { useState } from "react";
 import "./Home.scss";
 
 // components
 import SkeletonProfile from "../Skeletons/SkeletonProfile";
 import SkeletonPost from "../Skeletons/SkeletonPost";
+import CreatePostModal from "./CreatePostModal";
 import PaginatedPosts from "./PaginatedPosts";
 import User from "../User/User";
-import CustomModal from "./CustomModal";
 
 const Home = () => {
   // redux
+  const dispatch = useDispatch();
   const { auth } = useSelector((state) => state.auth);
+  const { posts } = useSelector((state) => state.posts);
+
+  const [error, setError] = useState("");
 
   // axios
   const { response } = useAxios({
@@ -20,20 +28,45 @@ const Home = () => {
     auth,
   });
 
+  const deletePost = (id) => {
+    axios
+      .request({
+        method: "DELETE",
+        url: `http://ec2-52-28-61-139.eu-central-1.compute.amazonaws.com:4000/api/posts/${id}`,
+        headers: {
+          "auth-token": auth,
+        },
+      })
+      .then((response) => {
+        setError("");
+        console.log(response);
+        dispatch(deletePostInStore(id));
+      })
+      .catch((error) => {
+        setError(error);
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    if (!response) return;
+    dispatch(setPosts(response.data));
+  }, [response]);
+
   return (
     <main className="home">
       <Container>
-        {response && (
+        {posts && (
           <div className="flex">
-            <div className="left">
-              <CustomModal />
-              <PaginatedPosts posts={response.data} />
+            <div>
+              <CreatePostModal />
+              <PaginatedPosts deletePost={deletePost} />
             </div>
             <User />
           </div>
         )}
 
-        {!response && (
+        {!posts && (
           <div className="flex">
             <div className="skelletons">
               {[1, 2, 3, 4].map((n) => (
