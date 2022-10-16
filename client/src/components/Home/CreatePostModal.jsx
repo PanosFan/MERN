@@ -29,6 +29,7 @@ const CreatePostModal = () => {
       })
       .then((response) => {
         dispatch(addPostInStore(response.data));
+        setError("");
         setMessage("Post created");
         setTimeout(() => {
           handleClose();
@@ -48,6 +49,7 @@ const CreatePostModal = () => {
     setBody("");
     setError("");
   };
+
   const handleShow = () => setShow(true);
 
   return (
@@ -55,7 +57,6 @@ const CreatePostModal = () => {
       <Button className="mb-3" variant="primary" onClick={handleShow}>
         Create new post
       </Button>
-
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>New post</Modal.Title>
