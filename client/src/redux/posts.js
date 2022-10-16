@@ -13,7 +13,7 @@ export const postsSlice = createSlice({
     },
     deletePostInStore: (state, action) => {
       let copy = [...state.posts];
-      copy = copy.filter((arrow) => arrow._id !== action.payload);
+      copy = copy.filter((item) => item._id !== action.payload);
       state.posts = copy;
     },
     addPostInStore: (state, action) => {
