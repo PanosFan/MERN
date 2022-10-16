@@ -8,6 +8,7 @@ import SkeletonProfile from "../Skeletons/SkeletonProfile";
 import SkeletonPost from "../Skeletons/SkeletonPost";
 import PaginatedPosts from "./PaginatedPosts";
 import User from "../User/User";
+import CustomModal from "./CustomModal";
 
 const Home = () => {
   // redux
@@ -24,7 +25,10 @@ const Home = () => {
       <Container>
         {response && (
           <div className="flex">
-            <PaginatedPosts posts={response.data} />
+            <div className="left">
+              <CustomModal />
+              <PaginatedPosts posts={response.data} />
+            </div>
             <User />
           </div>
         )}
