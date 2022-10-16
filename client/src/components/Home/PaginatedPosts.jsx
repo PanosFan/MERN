@@ -1,15 +1,10 @@
-import capitalizeFirstLetter from "../../utils/capitalizeFirstLetter";
-import { useDispatch, useSelector } from "react-redux";
-import ButtonGroup from "react-bootstrap/ButtonGroup";
-import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import ReactPaginate from "react-paginate";
-import { Button } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import Post from "./Post";
 
 const PaginatedPosts = ({ deletePost }) => {
-  const navigate = useNavigate();
-
-  const { userID } = useSelector((state) => state.userID);
+  // redux
   const { posts } = useSelector((state) => state.posts);
 
   // pagination
@@ -28,38 +23,12 @@ const PaginatedPosts = ({ deletePost }) => {
     const newOffset = (event.selected * itemsPerPage) % posts.length;
     setItemOffset(newOffset);
   };
-  // endPagination
 
   return (
     <section className="posts">
       <>
         {currentItems.map((item) => (
-          <div className="post" key={item._id}>
-            <h3>{item.title}</h3>
-            <p>{item.content}</p>
-            <div className="flex">
-              <small className="text-muted">
-                {capitalizeFirstLetter(item.user.name)}
-              </small>
-              <ButtonGroup>
-                <Button
-                  className="me-2"
-                  variant="outline-info"
-                  onClick={() => navigate(`/details/${item._id}`)}
-                >
-                  Read more
-                </Button>
-                {item.user.id == userID && (
-                  <Button
-                    variant="outline-danger"
-                    onClick={() => deletePost(item._id)}
-                  >
-                    Delete
-                  </Button>
-                )}
-              </ButtonGroup>
-            </div>
-          </div>
+          <Post item={item} deletePost={deletePost} key={item._id} />
         ))}
       </>
 

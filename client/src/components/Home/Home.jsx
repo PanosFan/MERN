@@ -1,10 +1,9 @@
-import { useDispatch, useSelector } from "react-redux";
 import { setPosts, deletePostInStore } from "../../redux/posts";
+import { useDispatch, useSelector } from "react-redux";
 import { Container } from "react-bootstrap";
 import useAxios from "../../hooks/useAxios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import { useState } from "react";
 import "./Home.scss";
 
 // components
@@ -43,7 +42,7 @@ const Home = () => {
         dispatch(deletePostInStore(id));
       })
       .catch((error) => {
-        setError(error);
+        setError(error.message);
         console.log(error);
       });
   };
@@ -56,6 +55,7 @@ const Home = () => {
   return (
     <main className="home">
       <Container>
+        {error && <p className="text-danger">{error}</p>}
         {posts && (
           <div className="flex">
             <div className="postsWrapper">
