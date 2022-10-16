@@ -29,13 +29,9 @@ const CreatePostModal = () => {
       })
       .then((response) => {
         dispatch(addPostInStore(response.data));
-        setTitle("");
-        setBody("");
-        setError("");
         setMessage("Post created");
         setTimeout(() => {
           handleClose();
-          setMessage("");
         }, 1500);
         console.log(response);
       })
@@ -45,7 +41,13 @@ const CreatePostModal = () => {
       });
   };
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false);
+    setMessage("");
+    setTitle("");
+    setBody("");
+    setError("");
+  };
   const handleShow = () => setShow(true);
 
   return (
