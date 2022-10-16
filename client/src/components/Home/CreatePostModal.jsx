@@ -1,11 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
+import { addPostInStore } from "../../redux/posts";
+import CreatePostForm from "./CreatePostForm";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import React, { useState } from "react";
-import Form from "react-bootstrap/Form";
-
 import axios from "axios";
-import { addPostInStore } from "../../redux/posts";
 
 const CreatePostModal = () => {
   const [show, setShow] = useState(false);
@@ -30,6 +29,8 @@ const CreatePostModal = () => {
       })
       .then((response) => {
         dispatch(addPostInStore(response.data));
+        setTitle("");
+        setBody("");
         setError("");
         setMessage("Post created");
         setTimeout(() => {
@@ -58,27 +59,7 @@ const CreatePostModal = () => {
           <Modal.Title>New post</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Post title</Form.Label>
-              <Form.Control
-                type="text"
-                autoFocus
-                onChange={(e) => setTitle(e.target.value)}
-              />
-            </Form.Group>
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label>Post body</Form.Label>
-              <Form.Control
-                as="textarea"
-                rows={3}
-                onChange={(e) => setBody(e.target.value)}
-              />
-            </Form.Group>
-          </Form>
+          <CreatePostForm setTitle={setTitle} setBody={setBody} />
         </Modal.Body>
         <Modal.Footer>
           {message && <span className="text-success me-auto">{message}</span>}
