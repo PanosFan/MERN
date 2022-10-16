@@ -58,7 +58,7 @@ const Home = () => {
       <Container>
         {posts && (
           <div className="flex">
-            <div>
+            <div className="postsWrapper">
               <CreatePostModal />
               <PaginatedPosts deletePost={deletePost} />
             </div>

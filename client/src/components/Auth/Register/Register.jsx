@@ -72,7 +72,7 @@ const Register = () => {
               <FloatingLabel
                 controlId="floatingName"
                 label="Name"
-                className="mb-3 mt-3"
+                className="mb-3"
               >
                 <Form.Control
                   type="text"
