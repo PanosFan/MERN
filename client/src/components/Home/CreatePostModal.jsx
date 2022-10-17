@@ -28,10 +28,10 @@ const CreatePostModal = () => {
         },
       })
       .then((response) => {
-        dispatch(addPostInStore(response.data));
         setError("");
         setMessage("Post created");
         setTimeout(() => {
+          dispatch(addPostInStore(response.data));
           handleClose();
         }, 1500);
         console.log(response);
