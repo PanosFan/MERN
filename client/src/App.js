@@ -8,10 +8,10 @@ import "./App.scss";
 
 // comnponents
 import PageNavbar from "./components/Layout/PageNavbar/PageNavbar";
+import EditPostPage from "./components/EditPostPage/EditPostPage";
 import Register from "./components/Auth/Register/Register";
 import EditPassword from "./components/User/EditPassword";
 import Footer from "./components/Layout/Footer/Footer";
-import EditPage from "./components/EditPage/EditPage";
 import Error from "./components/Layout/Error/Error";
 import Details from "./components/Details/Details";
 import Login from "./components/Auth/Login/Login";
@@ -37,7 +37,7 @@ const App = () => {
           <>
             <Route path="/" element={<Home />} />
             <Route path="/details/:id" element={<Details />} />
-            <Route path="/edit/:id" element={<EditPage />} />
+            <Route path="/edit/:id" element={<EditPostPage />} />
             <Route path="/user/password" element={<EditPassword />} />
             <Route path="/login" element={<Navigate to="/" />} />
             <Route path="/register" element={<Navigate to="/" />} />

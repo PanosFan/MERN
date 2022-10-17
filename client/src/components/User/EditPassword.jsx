@@ -1,16 +1,10 @@
-import {
-  Col,
-  Container,
-  FloatingLabel,
-  Row,
-  Button,
-  Form,
-} from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useState } from "react";
-import axios from "axios";
 import "./EditPassword.scss";
-import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import EditPasswordForm from "./EditPasswordForm";
 
 const EditPassword = () => {
   const navigate = useNavigate();
@@ -57,38 +51,12 @@ const EditPassword = () => {
       <Container>
         <Row className="justify-content-center">
           <Col xl={4} lg={6} md={8} sm={10}>
-            <Form>
-              <FloatingLabel controlId="floatingInput" label="Old password">
-                <Form.Control
-                  type="password"
-                  className="mb-3"
-                  placeholder="Old password"
-                  onChange={(e) => setOldPassword(e.target.value)}
-                />
-              </FloatingLabel>
-              <FloatingLabel controlId="floatingPassword" label="New password">
-                <Form.Control
-                  className="mb-3"
-                  type="password"
-                  placeholder="New password"
-                  onChange={(e) => setNewPassword(e.target.value)}
-                />
-              </FloatingLabel>
-              <FloatingLabel
-                controlId="floatingPassword"
-                label="Repeat password"
-              >
-                <Form.Control
-                  className="mb-3"
-                  type="password"
-                  placeholder="Repeat password"
-                  onChange={(e) => setRepeatPassword(e.target.value)}
-                />
-              </FloatingLabel>
-              <Button variant="primary" type="submit" onClick={handleSubmit}>
-                Submit
-              </Button>
-            </Form>
+            <EditPasswordForm
+              setNewPassword={setNewPassword}
+              setOldPassword={setOldPassword}
+              setRepeatPassword={setRepeatPassword}
+              handleSubmit={handleSubmit}
+            />
             {message && <p className="text-success mt-4">{message}</p>}
             {error && <p className="text-danger mt-4">{error}</p>}
           </Col>

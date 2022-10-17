@@ -6,7 +6,6 @@
 
   .flex {
     justify-content: space-between;
-    flex-wrap: nowrap;
 
     .skelletons,
     .posts {
@@ -47,11 +46,11 @@
 
   @media screen and (max-width: 574px) {
     .flex {
-      flex-wrap: wrap-reverse !important;
+      flex-wrap: wrap-reverse;
       .skelletons,
       .postsWrapper,
       .posts {
-        width: 100% !important;
+        width: 100%;
       }
     }
   }

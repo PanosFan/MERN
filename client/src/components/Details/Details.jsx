@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
-import useAxios from "../../hooks/useAxios";
 import { Container } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import User from "../User/User";
 import "./Details.scss";
 
 const Details = () => {
@@ -9,19 +9,23 @@ const Details = () => {
   const { id } = useParams();
 
   // redux
-  const { auth } = useSelector((state) => state.auth);
-
-  // fetch post
-  const { response } = useAxios({
-    url: `http://ec2-52-28-61-139.eu-central-1.compute.amazonaws.com:4000/api/posts/${id}`,
-    auth,
-  });
+  const { posts } = useSelector((state) => state.posts);
 
   return (
     <section className="postDetails">
       <Container>
-        <p>{response && response.data.result.title}</p>
-        <p>{response && response.data.result.content}</p>
+        <div className="flex">
+          {posts &&
+            posts
+              .filter((item) => item._id == id)
+              .map((item) => (
+                <div className="detailsWrapper" key={item._id}>
+                  <h3 className="fw-bold">{item.title}</h3>
+                  <p className="mt-4">{item.content}</p>
+                </div>
+              ))}
+          <User />
+        </div>
       </Container>
     </section>
   );

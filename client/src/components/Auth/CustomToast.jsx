@@ -30,8 +30,8 @@ function CustomToast() {
           <strong className="me-auto">Page info</strong>
         </Toast.Header>
         <Toast.Body>
-          This is a dockerized MERN app, hosted on AWS using react-bootstrap,
-          sass, nginx, bcrypt, JWT and mongodb which is hosted on atlas.
+          This is a dockerized MERN app, hosted on AWS using redux, bootstrap,
+          nginx, bcrypt, JWT and mongodb which is hosted on atlas.
         </Toast.Body>
       </Toast>
     </ToastContainer>

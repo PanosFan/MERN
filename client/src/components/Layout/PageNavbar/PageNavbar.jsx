@@ -24,7 +24,9 @@ function PageNavbar() {
   return (
     <Navbar bg="muted" variant="dark" expand="lg" className="mb-3">
       <Container>
-        <Navbar.Brand>Forum</Navbar.Brand>
+        <LinkContainer to={auth ? "/" : "/login"}>
+          <Navbar.Brand>Forum</Navbar.Brand>
+        </LinkContainer>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">

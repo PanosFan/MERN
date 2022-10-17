@@ -7,6 +7,7 @@ import { Button } from "react-bootstrap";
 const Post = ({ item, deletePost }) => {
   const navigate = useNavigate();
   const { userID } = useSelector((state) => state.userID);
+
   return (
     <div className="post">
       <h3>{item.title}</h3>

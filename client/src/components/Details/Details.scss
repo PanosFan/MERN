@@ -1,5 +1,22 @@
 @import "../../Colours.scss";
 
 .postDetails {
+  margin-top: 2em;
   color: $textColour;
+
+  .flex {
+    justify-content: space-between;
+
+    .detailsWrapper {
+      width: 80%;
+    }
+  }
+  @media screen and (max-width: 990px) {
+    .flex {
+      flex-wrap: wrap-reverse;
+      .detailsWrapper {
+        width: 100%;
+      }
+    }
+  }
 }
