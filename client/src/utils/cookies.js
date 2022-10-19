@@ -1,7 +1,7 @@
 export function setCookie(name, value, daysTolive) {
   const date = new Date();
   date.setTime(date.getTime() + daysTolive * 24 * 60 * 60 * 1000);
-  let expires = "expires=" + date.toLocaleString("en-GB", { timeZone: "GMT" });
+  let expires = "expires=" + date.toLocaleString("en-GR", { timeZone: "GMT" });
   document.cookie = `${name}=${value}; ${expires}; path=/; SameSite=Lax`;
 }
 

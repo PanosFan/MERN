@@ -17,6 +17,7 @@ function PageNavbar() {
   const logout = () => {
     deleteCookie("auth");
     deleteCookie("user");
+    deleteCookie("userID");
     dispatch(unsetUser());
     dispatch(unsetAuth());
   };
