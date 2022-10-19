@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getCookie } from "./utils/cookies";
 import { setAuth } from "./redux/auth";
-import { setUser, setUserID } from "./redux/user";
+import { setUser } from "./redux/user";
 import "./App.scss";
 
 // comnponents
@@ -25,8 +25,7 @@ const App = () => {
   // get data from cookies if they are set
   useEffect(() => {
     dispatch(setAuth(getCookie("auth")));
-    dispatch(setUser(getCookie("user")));
-    dispatch(setUserID(getCookie("userID")));
+    dispatch(setUser({ user: getCookie("user"), userID: getCookie("userID") }));
   }, []);
 
   return (
