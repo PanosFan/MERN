@@ -24,6 +24,24 @@ const postSchema = new mongoose.Schema(
         type: String,
       },
     },
+    comments: [
+      {
+        user: {
+          id: {
+            required: false,
+            type: String,
+          },
+          name: {
+            required: false,
+            type: String,
+          },
+        },
+        content: {
+          required: false,
+          type: String,
+        },
+      },
+    ],
   },
   { timestamps: true }
 );

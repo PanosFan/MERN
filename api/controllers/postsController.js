@@ -64,6 +64,28 @@ const deletePost = async (req, res) => {
     .catch((error) => res.json({ error }));
 };
 
+const createComment = async (req, res) => {
+  const id = req.params.id;
+
+  if (!req.body.comment) {
+    return res.status(400).json({ error: "You need to provide a comment" });
+  }
+
+  const validID = ObjectId.isValid(id);
+  if (!validID) return res.status(404).json({ error: "Id is not valid" });
+
+  const exists = await Post.findById(id);
+  if (!exists) return res.status(404).json({ error: "Post not found" });
+
+  let newComment = { user: req.user, content: req.body.comment };
+  let comments = [...exists.comments];
+  comments.push(newComment);
+
+  Post.findByIdAndUpdate(id, { comments })
+    .then(res.json({ response: "Comment created" }))
+    .catch((error) => res.json({ error }));
+};
+
 const editPost = async (req, res) => {
   const id = req.params.id;
 
@@ -92,4 +114,11 @@ const editPost = async (req, res) => {
     .catch((error) => res.json({ error }));
 };
 
-module.exports = { getPost, createPost, editPost, deletePost, getDetails };
+module.exports = {
+  getPost,
+  createPost,
+  editPost,
+  deletePost,
+  getDetails,
+  createComment,
+};
