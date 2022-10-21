@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import EditPostForm from "./EditPostForm";
 import "./EditPostPage.scss";
+import { updatePostInStore } from "../../redux/posts";
 
 const EditPostPage = () => {
   const { id } = useParams();
@@ -17,6 +18,7 @@ const EditPostPage = () => {
   const { auth } = useSelector((state) => state.auth);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -32,14 +34,19 @@ const EditPostPage = () => {
       .then((response) => {
         setError("");
         setMessage("Post edited");
+        dispatch(
+          updatePostInStore({
+            id,
+            title,
+            body,
+          })
+        );
         setTimeout(() => {
           navigate("/");
         }, 2000);
-        console.log(response);
       })
       .catch((error) => {
         setError(error.response.data.error);
-        console.log(error);
       });
   };
 

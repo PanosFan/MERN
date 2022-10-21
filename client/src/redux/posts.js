@@ -20,20 +20,17 @@ export const postsSlice = createSlice({
       state.posts = [...state.posts, action.payload];
     },
 
-    // In case I need to mutate the state on update, now the app
-    // navigates to home page after update
-
-    // updatePostInStore: (state, action) => {
-    //   state.posts = state.posts.map((item) => {
-    //     if (item._id === action.payload.id) {
-    //       return {
-    //         ...item,
-    //         title: action.payload.title,
-    //         content: action.payload.body,
-    //       };
-    //     } else return item;
-    //   });
-    // },
+    updatePostInStore: (state, action) => {
+      state.posts = state.posts.map((item) => {
+        if (item._id === action.payload.id) {
+          return {
+            ...item,
+            title: action.payload.title,
+            content: action.payload.body,
+          };
+        } else return item;
+      });
+    },
   },
 });
 
