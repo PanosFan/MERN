@@ -4,12 +4,18 @@ import { useSelector } from "react-redux";
 import User from "../User/User";
 import "./Details.scss";
 
+import Comments from "./Comments";
+
 const Details = () => {
   // grab id from url
   const { id } = useParams();
 
   // redux
   const { posts } = useSelector((state) => state.posts);
+
+  const createComment = () => {
+    console.log(1);
+  };
 
   return (
     <section className="postDetails">
@@ -19,9 +25,12 @@ const Details = () => {
             posts
               .filter((item) => item._id == id)
               .map((item) => (
-                <div className="detailsWrapper" key={item._id}>
-                  <h3 className="fw-bold">{item.title}</h3>
-                  <p className="mt-4">{item.content}</p>
+                <div key={item._id}>
+                  <div className="detailsWrapper mb-5">
+                    <h3 className="fw-bold">{item.title}</h3>
+                    <p className="mt-4">{item.content}</p>
+                  </div>
+                  <Comments createComment={createComment} />
                 </div>
               ))}
           <User />

@@ -19,7 +19,6 @@ const useAxios = ({ method = "GET", url, auth }) => {
         })
         .then((response) => {
           setResponse(response);
-          console.log(response.data);
         })
         .catch((error) => {
           if (error.message !== "canceled") {

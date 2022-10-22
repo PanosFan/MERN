@@ -1,0 +1,16 @@
+.comments {
+  width: 60%;
+  .form-floating {
+    color: black;
+  }
+
+  @media screen and (max-width: 1199px) {
+    width: 70%;
+  }
+  @media screen and (max-width: 991px) {
+    width: 90%;
+  }
+  @media screen and (max-width: 576px) {
+    width: 100%;
+  }
+}

@@ -8,20 +8,21 @@
     justify-content: space-between;
 
     .detailsWrapper {
+      background-color: $primaryColour;
+      padding: 0.5em;
       width: 70%;
     }
   }
 
-  @media screen and (max-width: 1198px) {
+  @media screen and (max-width: 1199px) {
     .flex {
-      flex-wrap: wrap-reverse;
       .detailsWrapper {
         width: 80%;
       }
     }
   }
 
-  @media screen and (max-width: 990px) {
+  @media screen and (max-width: 991px) {
     .flex {
       flex-wrap: wrap-reverse;
       .detailsWrapper {

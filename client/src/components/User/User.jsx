@@ -6,7 +6,7 @@ const User = () => {
   const { user } = useSelector((state) => state.user);
 
   return (
-    <div className="mb-5">
+    <div className="mb-5 user">
       <h2>{user}</h2>
       <Link to="/user/password">Edit password</Link>
     </div>
