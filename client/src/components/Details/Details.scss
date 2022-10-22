@@ -8,9 +8,19 @@
     justify-content: space-between;
 
     .detailsWrapper {
-      width: 80%;
+      width: 70%;
     }
   }
+
+  @media screen and (max-width: 1198px) {
+    .flex {
+      flex-wrap: wrap-reverse;
+      .detailsWrapper {
+        width: 80%;
+      }
+    }
+  }
+
   @media screen and (max-width: 990px) {
     .flex {
       flex-wrap: wrap-reverse;

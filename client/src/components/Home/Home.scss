@@ -9,7 +9,7 @@
 
     .skelletons,
     .posts {
-      width: 30em;
+      width: 35em;
     }
 
     .posts {
@@ -38,17 +38,18 @@
     }
   }
 
+  @media screen and (max-width: 1198px) {
+    .flex {
+      .skelletons,
+      .posts {
+        width: 30em;
+      }
+    }
+  }
   @media screen and (max-width: 990px) {
     .flex {
       flex-wrap: wrap-reverse;
-    }
-  }
-
-  @media screen and (max-width: 574px) {
-    .flex {
-      flex-wrap: wrap-reverse;
       .skelletons,
-      .postsWrapper,
       .posts {
         width: 100%;
       }
