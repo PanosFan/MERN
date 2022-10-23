@@ -77,9 +77,8 @@ const createComment = async (req, res) => {
   const exists = await Post.findById(id);
   if (!exists) return res.status(404).json({ error: "Post not found" });
 
-  let newComment = { user: req.user, content: req.body.comment };
   let comments = [...exists.comments];
-  comments.push(newComment);
+  comments.push({ user: req.user, content: req.body.comment });
 
   Post.findByIdAndUpdate(id, { comments })
     .then(res.json({ response: "Comment created" }))
