@@ -26,7 +26,10 @@ const CreateCommentForm = ({ id }) => {
         },
       })
       .then((response) => {
-        console.log(response);
+        let updatedComments = response.data.result.comments;
+        let lastComment = updatedComments[updatedComments.length - 1];
+
+        console.log(lastComment);
         setComment("");
         dispatch(
           pushCommentInStore({
@@ -34,6 +37,7 @@ const CreateCommentForm = ({ id }) => {
             comment,
             user,
             userID,
+            commentID: lastComment._id,
           })
         );
       })

@@ -36,12 +36,29 @@ export const postsSlice = createSlice({
       state.posts = state.posts.map((item) => {
         if (item._id === action.payload.id) {
           let commentsCopy = [...item.comments];
-          let newComment = action.payload.comment;
-          let newUserComment = {
-            name: action.payload.user,
-            id: action.payload.userID,
+          commentsCopy.push({
+            user: {
+              name: action.payload.user,
+              id: action.payload.userID,
+            },
+            content: action.payload.comment,
+            _id: action.payload.commentID,
+          });
+          return {
+            ...item,
+            comments: commentsCopy,
           };
-          commentsCopy.push({ user: newUserComment, content: newComment });
+        } else return item;
+      });
+    },
+
+    deleteCommentFromStore: (state, action) => {
+      state.posts = state.posts.map((item) => {
+        if (item._id === action.payload.id) {
+          let commentsCopy = [...item.comments];
+          commentsCopy = commentsCopy.filter(
+            (comment) => comment._id != action.payload.commentID
+          );
           return {
             ...item,
             comments: commentsCopy,
@@ -58,6 +75,7 @@ export const {
   addPostInStore,
   updatePostInStore,
   pushCommentInStore,
+  deleteCommentFromStore,
 } = postsSlice.actions;
 
 export default postsSlice.reducer;

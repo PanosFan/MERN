@@ -80,8 +80,33 @@ const createComment = async (req, res) => {
   let comments = [...exists.comments];
   comments.push({ user: req.user, content: req.body.comment });
 
+  await Post.findByIdAndUpdate(id, { comments }).catch((error) =>
+    res.json({ error })
+  );
+
+  Post.findById(id).then((result) => res.json({ result }));
+};
+
+const deleteComment = async (req, res) => {
+  const id = req.params.id;
+  const commentID = req.params.commentID;
+
+  // checking if the id is a valid one
+  const validID = ObjectId.isValid(id);
+  if (!validID) return res.status(404).json({ error: "Id is not valid" });
+
+  // checking if the id (which is now valid) is in the db
+  const exists = await Post.findById(id);
+  if (!exists) return res.status(404).json({ error: "Post not found" });
+
+  const comment = exists.comments.filter((item) => item._id == commentID);
+  if (!comment.length > 0)
+    return res.status(404).json({ error: "Comment not found" });
+
+  const comments = exists.comments.filter((item) => item._id != commentID);
+
   Post.findByIdAndUpdate(id, { comments })
-    .then(res.json({ response: "Comment created" }))
+    .then(res.json({ response: "Comment deleted" }))
     .catch((error) => res.json({ error }));
 };
 
@@ -120,4 +145,5 @@ module.exports = {
   deletePost,
   getDetails,
   createComment,
+  deleteComment,
 };

@@ -4,8 +4,13 @@
   width: 60%;
   .comment {
     margin-top: 0.5em;
-    padding: 1em;
+    padding: 1em 1em 0.5em 1em;
     background-color: $secondaryColour;
+
+    .flex {
+      justify-content: space-between;
+      align-items: flex-end;
+    }
   }
   .form-floating {
     color: black;

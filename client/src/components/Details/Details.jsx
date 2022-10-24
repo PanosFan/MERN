@@ -26,7 +26,7 @@ const Details = () => {
                     <h3 className="fw-bold">{item.title}</h3>
                     <p className="mt-4">{item.content}</p>
                   </div>
-                  <Comments posts={posts} id={id} />
+                  <Comments id={id} />
                 </div>
               ))}
           <User />

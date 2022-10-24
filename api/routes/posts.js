@@ -6,6 +6,7 @@ const {
   editPost,
   getDetails,
   createComment,
+  deleteComment,
 } = require("../controllers/postsController");
 
 router.get("/", getPost);
@@ -15,6 +16,8 @@ router.get("/:id", getDetails);
 router.post("/", createPost);
 
 router.post("/:id", createComment);
+
+router.delete("/:id/:commentID", deleteComment);
 
 router.put("/:id", editPost);
 
