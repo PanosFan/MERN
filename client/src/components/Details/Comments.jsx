@@ -49,8 +49,8 @@ const Comments = ({ id }) => {
         posts
           .filter((item) => item._id === id)
           .map((item) =>
-            item.comments?.map((item, i) => (
-              <div key={i} className="comment">
+            item.comments?.map((item) => (
+              <div key={item._id} className="comment">
                 <p>{item.content}</p>
                 <div className="flex">
                   <small className="text-muted">
