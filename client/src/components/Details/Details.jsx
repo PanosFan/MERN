@@ -13,24 +13,20 @@ const Details = () => {
   // redux
   const { posts } = useSelector((state) => state.posts);
 
-  const createComment = () => {
-    console.log(1);
-  };
-
   return (
     <section className="postDetails">
       <Container>
         <div className="flex">
           {posts &&
             posts
-              .filter((item) => item._id == id)
+              .filter((item) => item._id === id)
               .map((item) => (
-                <div key={item._id}>
+                <div key={item._id} className="left-side">
                   <div className="detailsWrapper mb-5">
                     <h3 className="fw-bold">{item.title}</h3>
                     <p className="mt-4">{item.content}</p>
                   </div>
-                  <Comments createComment={createComment} />
+                  <Comments posts={posts} id={id} />
                 </div>
               ))}
           <User />

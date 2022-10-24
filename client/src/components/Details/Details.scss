@@ -7,16 +7,18 @@
   .flex {
     justify-content: space-between;
 
-    .detailsWrapper {
-      background-color: $primaryColour;
-      padding: 0.5em;
+    .left-side {
       width: 70%;
+      .detailsWrapper {
+        background-color: $primaryColour;
+        padding: 0.5em;
+      }
     }
   }
 
   @media screen and (max-width: 1199px) {
     .flex {
-      .detailsWrapper {
+      .left-side {
         width: 80%;
       }
     }
@@ -25,7 +27,7 @@
   @media screen and (max-width: 991px) {
     .flex {
       flex-wrap: wrap-reverse;
-      .detailsWrapper {
+      .left-side {
         width: 100%;
       }
     }

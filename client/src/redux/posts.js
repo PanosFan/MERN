@@ -31,6 +31,24 @@ export const postsSlice = createSlice({
         } else return item;
       });
     },
+
+    pushCommentInStore: (state, action) => {
+      state.posts = state.posts.map((item) => {
+        if (item._id === action.payload.id) {
+          let commentsCopy = [...item.comments];
+          let newComment = action.payload.comment;
+          let newUserComment = {
+            name: action.payload.user,
+            id: action.payload.userID,
+          };
+          commentsCopy.push({ user: newUserComment, content: newComment });
+          return {
+            ...item,
+            comments: commentsCopy,
+          };
+        } else return item;
+      });
+    },
   },
 });
 
@@ -39,6 +57,7 @@ export const {
   deletePostInStore,
   addPostInStore,
   updatePostInStore,
+  pushCommentInStore,
 } = postsSlice.actions;
 
 export default postsSlice.reducer;
