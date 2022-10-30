@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { Button } from "react-bootstrap";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
-import Form from "react-bootstrap/Form";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { pushCommentInStore } from "../../redux/posts";
+import { Button } from "react-bootstrap";
+import Form from "react-bootstrap/Form";
+import { useState } from "react";
+import axios from "axios";
 
 const CreateCommentForm = ({ id }) => {
   const [comment, setComment] = useState("");

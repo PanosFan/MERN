@@ -1,5 +1,5 @@
-import axios from "axios";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 const useAxios = ({ method = "GET", url, auth }) => {
   const [response, setResponse] = useState(null);

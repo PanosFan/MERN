@@ -1,11 +1,11 @@
 import capitalizeFirstLetter from "../../utils/capitalizeFirstLetter";
-import CreateCommentForm from "./CreateCommentForm";
-import "./Comments.scss";
-import { Button } from "react-bootstrap";
+import { deleteCommentFromStore } from "../../redux/posts";
 import { useDispatch, useSelector } from "react-redux";
+import CreateCommentForm from "./CreateCommentForm";
+import { Button } from "react-bootstrap";
 import { useState } from "react";
 import axios from "axios";
-import { deleteCommentFromStore } from "../../redux/posts";
+import "./Comments.scss";
 
 const Comments = ({ id }) => {
   const { posts } = useSelector((state) => state.posts);

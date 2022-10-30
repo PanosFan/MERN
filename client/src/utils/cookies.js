@@ -5,11 +5,6 @@ export function setCookie(name, value, daysTolive) {
   document.cookie = `${name}=${value}; ${expires}; path=/; SameSite=Lax`;
 }
 
-export function deleteCookie(name) {
-  document.cookie =
-    name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT; SameSite=Lax";
-}
-
 export function getCookie(name) {
   const cDecoded = decodeURIComponent(document.cookie);
   const cArray = cDecoded.split("; ");
@@ -20,4 +15,9 @@ export function getCookie(name) {
     }
   });
   return result;
+}
+
+export function deleteCookie(name) {
+  document.cookie =
+    name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT; SameSite=Lax";
 }

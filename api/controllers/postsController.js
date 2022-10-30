@@ -1,51 +1,49 @@
-const Post = require("../models/Post");
 const ObjectId = require("mongoose").Types.ObjectId;
+const Post = require("../models/Post");
 
 const getPost = (req, res) => {
   Post.find()
     .then((result) => res.json(result))
-    .catch((error) => res.json({ error }));
+    .catch((error) => res.json(error));
 };
 
 const getDetails = async (req, res) => {
-  const id = req.params.id;
+  const { id } = req.params;
 
   // checking if the id is a valid one
-  const validID = ObjectId.isValid(id);
-  if (!validID) return res.status(404).json({ error: "Id is not valid" });
+  if (!ObjectId.isValid(id))
+    return res.status(404).json({ error: "Id is not valid" });
 
   // checking if the id (which is now valid) is in the db
   const exists = await Post.findById(id);
   if (!exists) return res.status(404).json({ error: "Post not found" });
 
   Post.findById(id)
-    .then((result) => res.json({ result }))
-    .catch((error) => res.json({ error }));
+    .then((result) => res.json(result))
+    .catch((error) => res.json(error));
 };
 
 const createPost = (req, res) => {
-  if (!(req.body.title && req.body.content)) {
+  const { title, content } = req.body;
+  if (!(title && content)) {
     return res.status(400).json({ error: "All fields are required" });
   }
+
   Post.create({
     ...req.body,
     user: req.user,
     likes: 0,
   })
-    .then((result) => {
-      res.json({ response: "Post saved", ...result._doc });
-    })
-    .catch((err) => {
-      res.json({ error: err.message });
-    });
+    .then((result) => res.json({ response: "Post saved", ...result._doc }))
+    .catch((error) => res.json(error));
 };
 
 const deletePost = async (req, res) => {
-  const id = req.params.id;
+  const { id } = req.params;
 
   // checking if the id is a valid one
-  const validID = ObjectId.isValid(id);
-  if (!validID) return res.status(404).json({ error: "Id is not valid" });
+  if (!ObjectId.isValid(id))
+    return res.status(404).json({ error: "Id is not valid" });
 
   // checking if the id (which is now valid) is in the db
   const exists = await Post.findById(id);
@@ -61,39 +59,42 @@ const deletePost = async (req, res) => {
 
   Post.findByIdAndDelete(id)
     .then(res.json({ response: "Deleted" }))
-    .catch((error) => res.json({ error }));
+    .catch((error) => res.json(error));
 };
 
 const createComment = async (req, res) => {
-  const id = req.params.id;
+  const { id } = req.params;
+  const { comment } = req.body;
 
-  if (!req.body.comment) {
+  if (!comment) {
     return res.status(400).json({ error: "You need to provide a comment" });
   }
 
-  const validID = ObjectId.isValid(id);
-  if (!validID) return res.status(404).json({ error: "Id is not valid" });
+  if (!ObjectId.isValid(id))
+    return res.status(404).json({ error: "Id is not valid" });
 
   const exists = await Post.findById(id);
   if (!exists) return res.status(404).json({ error: "Post not found" });
 
   let comments = [...exists.comments];
-  comments.push({ user: req.user, content: req.body.comment });
+  comments.push({ user: req.user, content: comment });
 
   await Post.findByIdAndUpdate(id, { comments }).catch((error) =>
-    res.json({ error })
+    res.json(error)
   );
 
-  Post.findById(id).then((result) => res.json({ result }));
+  // sending the updates posts back on the front end for state purposes
+  Post.findById(id)
+    .then((result) => res.json(result))
+    .catch((error) => res.json(error));
 };
 
 const deleteComment = async (req, res) => {
-  const id = req.params.id;
-  const commentID = req.params.commentID;
+  const { id, commentID } = req.params;
 
   // checking if the id is a valid one
-  const validID = ObjectId.isValid(id);
-  if (!validID) return res.status(404).json({ error: "Id is not valid" });
+  if (!ObjectId.isValid(id))
+    return res.status(404).json({ error: "Id is not valid" });
 
   // checking if the id (which is now valid) is in the db
   const exists = await Post.findById(id);
@@ -107,19 +108,19 @@ const deleteComment = async (req, res) => {
 
   Post.findByIdAndUpdate(id, { comments })
     .then(res.json({ response: "Comment deleted" }))
-    .catch((error) => res.json({ error }));
+    .catch((error) => res.json(error));
 };
 
 const editPost = async (req, res) => {
-  const id = req.params.id;
+  const { id } = req.params;
 
   if (!(req.body.title && req.body.content)) {
     return res.status(400).json({ error: "All fields are required" });
   }
 
   // checking if the id is a valid one
-  const validID = ObjectId.isValid(id);
-  if (!validID) return res.status(404).json({ error: "Id is not valid" });
+  if (!ObjectId.isValid(id))
+    return res.status(404).json({ error: "Id is not valid" });
 
   // checking if the id (which is now valid) is in the db
   const exists = await Post.findById(id);
@@ -135,7 +136,7 @@ const editPost = async (req, res) => {
 
   Post.findByIdAndUpdate(id, req.body)
     .then(res.json({ response: "Edited" }))
-    .catch((error) => res.json({ error }));
+    .catch((error) => res.json(error));
 };
 
 module.exports = {

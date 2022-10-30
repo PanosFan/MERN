@@ -1,8 +1,8 @@
-const router = require("express").Router();
 const {
   adminDeleteUser,
   adminGetUser,
 } = require("../controllers/adminController");
+const router = require("express").Router();
 
 router.get("/", adminGetUser);
 

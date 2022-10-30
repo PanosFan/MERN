@@ -2,11 +2,11 @@ import { LinkContainer } from "react-router-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteCookie } from "../../../utils/cookies";
 import Container from "react-bootstrap/Container";
+import { unsetUser } from "../../../redux/user";
 import { unsetAuth } from "../../../redux/auth";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import "./PageNavbar.scss";
-import { unsetUser } from "../../../redux/user";
 
 function PageNavbar() {
   // redux

@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
-import { Container, Row, Col } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { Container, Row, Col } from "react-bootstrap";
+import { updatePostInStore } from "../../redux/posts";
+import { useState, useEffect } from "react";
 import EditPostForm from "./EditPostForm";
 import "./EditPostPage.scss";
-import { updatePostInStore } from "../../redux/posts";
+import axios from "axios";
 
 const EditPostPage = () => {
   const { id } = useParams();

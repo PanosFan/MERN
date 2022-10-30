@@ -1,10 +1,10 @@
 import { Col, Container, Row } from "react-bootstrap";
+import EditPasswordForm from "./EditPasswordForm";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import "./EditPassword.scss";
 import axios from "axios";
-import EditPasswordForm from "./EditPasswordForm";
 
 const EditPassword = () => {
   const navigate = useNavigate();
