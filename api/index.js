@@ -20,7 +20,6 @@ const authRoutes = require("./routes/auth");
 require("dotenv/config");
 mongoose
   .connect(process.env.DBURI)
-  // .connect("mongodb://mongo:27017/mern")
   .then(() => console.log("connected to db"))
   .catch((error) => console.log(error));
 
