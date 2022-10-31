@@ -25,9 +25,9 @@ const getDetails = async (req, res) => {
 
 const createPost = (req, res) => {
   const { title, content } = req.body;
-  if (!(title && content)) {
+
+  if (!(title && content))
     return res.status(400).json({ error: "All fields are required" });
-  }
 
   Post.create({
     ...req.body,
@@ -49,13 +49,9 @@ const deletePost = async (req, res) => {
   const exists = await Post.findById(id);
   if (!exists) return res.status(404).json({ error: "Post not found" });
 
-  // checking if the id of the user requesting is the same as the id in db || admin can edit all
-  if (
-    req.user.id != exists.user.id &&
-    req.user.id != "6337278a070b9b637a5f4cea"
-  ) {
+  // checking if the id of the user requesting is the same as the id in db
+  if (req.user.id != exists.user.id)
     return res.status(404).json({ error: "This post is not yours" });
-  }
 
   Post.findByIdAndDelete(id)
     .then(res.json({ response: "Deleted" }))
@@ -66,9 +62,8 @@ const createComment = async (req, res) => {
   const { id } = req.params;
   const { comment } = req.body;
 
-  if (!comment) {
+  if (!comment)
     return res.status(400).json({ error: "You need to provide a comment" });
-  }
 
   if (!ObjectId.isValid(id))
     return res.status(404).json({ error: "Id is not valid" });
@@ -126,13 +121,9 @@ const editPost = async (req, res) => {
   const exists = await Post.findById(id);
   if (!exists) return res.status(404).json({ error: "Post not found" });
 
-  // checking if the id of the user requesting is the same as the id in db || admin can edit all
-  if (
-    req.user.id != exists.user.id &&
-    req.user.id != "6337278a070b9b637a5f4cea"
-  ) {
+  // checking if the id of the user requesting is the same as the id in db
+  if (req.user.id != exists.user.id)
     return res.status(404).json({ error: "This post is not yours" });
-  }
 
   Post.findByIdAndUpdate(id, req.body)
     .then(res.json({ response: "Edited" }))
