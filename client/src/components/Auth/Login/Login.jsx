@@ -44,7 +44,7 @@ function Login() {
       .request({
         data: { email, password },
         method: "POST",
-        url: "http://ec2-52-28-61-139.eu-central-1.compute.amazonaws.com:4000/api/users/login",
+        url: "http://ec2-18-157-180-46.eu-central-1.compute.amazonaws.com:4000/api/users/login",
       })
       .then((response) => {
         console.log(response);

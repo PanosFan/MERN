@@ -20,13 +20,14 @@ const CreateCommentForm = ({ id }) => {
       .request({
         data: { comment },
         method: "POST",
-        url: `http://ec2-52-28-61-139.eu-central-1.compute.amazonaws.com:4000/api/posts/${id}`,
+        url: `http://ec2-18-157-180-46.eu-central-1.compute.amazonaws.com:4000/api/posts/${id}`,
         headers: {
           "auth-token": auth,
         },
       })
       .then((response) => {
-        let updatedComments = response.data.result.comments;
+        console.log(response);
+        let updatedComments = response.data.comments;
         let lastComment = updatedComments[updatedComments.length - 1];
 
         console.log(lastComment);

@@ -27,7 +27,7 @@ const EditPassword = () => {
       .request({
         data: { password: newPassword, oldPassword: oldPassword },
         method: "PUT",
-        url: `http://ec2-52-28-61-139.eu-central-1.compute.amazonaws.com:4000/api/users/change_password/${userID}`,
+        url: `http://ec2-18-157-180-46.eu-central-1.compute.amazonaws.com:4000/api/users/change_password/${userID}`,
         headers: {
           "auth-token": auth,
         },
