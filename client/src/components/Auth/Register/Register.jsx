@@ -49,14 +49,14 @@ const Register = () => {
       .then((response) => {
         console.log(response);
         if (checked) {
-          setCookie("userID", response.data.id, 14);
+          setCookie("userID", response.data._id, 14);
           setCookie("auth", response.data["auth-token"], 14);
           setCookie("user", capitalizeFirstLetter(response.data.name), 14);
         }
         dispatch(
           setUser({
             user: capitalizeFirstLetter(response.data.name),
-            userID: response.data.id,
+            userID: response.data._id,
           })
         );
         dispatch(setAuth(response.data["auth-token"]));
