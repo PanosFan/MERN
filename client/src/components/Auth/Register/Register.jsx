@@ -44,7 +44,7 @@ const Register = () => {
       .request({
         data: { email, password, name },
         method: "POST",
-        url: "http://ec2-18-157-180-46.eu-central-1.compute.amazonaws.com:4000/api/users/register",
+        url: "http://localhost:4000/api/users/register",
       })
       .then((response) => {
         console.log(response);

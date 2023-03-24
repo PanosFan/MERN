@@ -20,7 +20,7 @@ const Comments = ({ id }) => {
     axios
       .request({
         method: "DELETE",
-        url: `http://ec2-18-157-180-46.eu-central-1.compute.amazonaws.com:4000/api/posts/${id}/${commentID}`,
+        url: `http://localhost:4000/api/posts/${id}/${commentID}`,
         headers: {
           "auth-token": auth,
         },

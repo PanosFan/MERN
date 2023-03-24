@@ -23,7 +23,7 @@ const Home = () => {
 
   // axios
   const { response } = useAxios({
-    url: "http://ec2-18-157-180-46.eu-central-1.compute.amazonaws.com:4000/api/posts/",
+    url: "http://localhost:4000/api/posts/",
     auth,
   });
 
@@ -31,7 +31,7 @@ const Home = () => {
     axios
       .request({
         method: "DELETE",
-        url: `http://ec2-18-157-180-46.eu-central-1.compute.amazonaws.com:4000/api/posts/${id}`,
+        url: `http://localhost:4000/api/posts/${id}`,
         headers: {
           "auth-token": auth,
         },

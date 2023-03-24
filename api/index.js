@@ -19,7 +19,7 @@ const authRoutes = require("./routes/auth");
 // Db connection
 require("dotenv/config");
 mongoose
-  .connect(process.env.DBURI)
+  .connect("mongodb://mongodb:27017/testapp")
   .then(() => console.log("connected to db"))
   .catch((error) => console.log(error));
 

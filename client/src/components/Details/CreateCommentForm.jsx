@@ -20,7 +20,7 @@ const CreateCommentForm = ({ id }) => {
       .request({
         data: { comment },
         method: "POST",
-        url: `http://ec2-18-157-180-46.eu-central-1.compute.amazonaws.com:4000/api/posts/${id}`,
+        url: `http://localhost:4000/api/posts/${id}`,
         headers: {
           "auth-token": auth,
         },
